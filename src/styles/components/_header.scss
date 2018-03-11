@@ -1,0 +1,8 @@
+.uaz-header {
+  border-bottom: 1px solid $color-darkgrey;
+  &__brand {
+    color: $color-brand;
+    &--active {
+    }
+  }
+}

@@ -1,0 +1,10 @@
+:host {
+  display: flex;
+  align-items: center;
+}
+
+.uaz-menu {
+  &__item {
+    margin-left: 15px;
+  }
+}
