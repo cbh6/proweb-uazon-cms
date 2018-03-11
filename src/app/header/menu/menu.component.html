@@ -1,3 +1,4 @@
-<div class="uaz-menu__item" *ngFor="let menuItem of sections" [routerLink]="menuItem.link">
-    {{menuItem.icon}} {{menuItem.label}}
-</div>
+<a class="item" *ngFor="let menuItem of sections" [routerLink]="menuItem.link">
+    <i [ngClass]="menuItem.icon"></i>
+    {{menuItem.label}}
+</a>

@@ -12,27 +12,27 @@ export class UazMenuComponent {
     {
       label: 'Libros',
       link: '/books',
-      icon: ''
+      icon: 'book icon'
     },
     {
       label: 'Autores',
       link: '/authors',
-      icon: ''
+      icon: 'pencil alternate icon'
     },
     {
       label: 'Pedidos',
       link: '/orders',
-      icon: ''
+      icon: 'euro sign icon'
     },
     {
       label: 'Comentarios',
       link: '/comments',
-      icon: ''
+      icon: 'comments outline icon'
     },
     {
       label: 'Usuarios',
       link: '/users',
-      icon: ''
+      icon: 'users icon'
     }
   ];
 }
