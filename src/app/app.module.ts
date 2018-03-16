@@ -4,12 +4,10 @@ import { RouterModule } from '@angular/router';
 import { ConnectionBackend, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
-import { UazHeaderComponent } from './header/header.component';
-import { UazMenuComponent } from './header/menu/menu.component';
 import { ApiService } from './shared/services/api/api.service';
 
 @NgModule({
-  declarations: [AppComponent, UazHeaderComponent, UazMenuComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, RouterModule.forRoot([])],
   providers: [
     {
@@ -21,7 +19,7 @@ import { ApiService } from './shared/services/api/api.service';
     }
     // habria que hacer modulos de dominio, libros, autores.. etc
     // y probeer en su modulo su servicio (aunque solo lo podrá usar el)
-    // aqui por simplicidad se mete en app pero habra quedistribuir
+    // aqui por simplicidad se mete en app pero habra que distribuir
   ],
   bootstrap: [AppComponent]
 })
