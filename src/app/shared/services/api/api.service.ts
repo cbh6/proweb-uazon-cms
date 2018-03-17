@@ -1,13 +1,9 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
+import { Http, Headers, ConnectionBackend, RequestOptions } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
-import {
-  Http,
-  Headers,
-  ConnectionBackend,
-  RequestOptions
-} from '@angular/http';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/do';
 
 // endpoints que se saltan la autentificacion pass through
 const passthrough = ['login', 'signup'];
@@ -22,37 +18,23 @@ export class ApiService extends Http {
   }
 
   static buildUrl(path) {
-    return ApiService.isBasePath(path)
-      ? path
-      : `${environment.apiPath}/${path}`;
+    return ApiService.isBasePath(path) ? path : `${environment.apiPath}/${path}`;
   }
   static isBasePath(path) {
     return path.startsWith('http://') || path.startsWith('https://');
   }
-  private toBody = (params: Object): string =>
-    params ? JSON.stringify(params) : '';
-  private toQuery(
-    params: Object | any[],
-    key: string = null,
-    search = new URLSearchParams('')
-  ): URLSearchParams {
+  private toBody = (params: object): string => (params ? JSON.stringify(params) : '');
+  private toQuery(params: object | any[], key: string = null, search = new URLSearchParams('')): URLSearchParams {
     if (params === undefined) {
       return search;
     }
     if (params instanceof Array && key) {
       // If it is an array, add brackets with the indexes: param[0]: value
-      params.forEach(
-        (p, i) => (search = this.toQuery(p, `${key}[${i}]`, search))
-      );
+      params.forEach((p, i) => (search = this.toQuery(p, `${key}[${i}]`, search)));
     } else if (params instanceof Object) {
       // If it is an object, add brackets wit the keys: param[key]: value
       Object.keys(params).forEach(
-        objKey =>
-          (search = this.toQuery(
-            params[objKey],
-            key ? `${key}[${objKey}]` : objKey,
-            search
-          ))
+        objKey => (search = this.toQuery(params[objKey], key ? `${key}[${objKey}]` : objKey, search))
       );
     } else if (key) {
       // If the value is not an object nor and array, just append it with its key
