@@ -20,10 +20,13 @@ export class ApiService extends Http {
   static buildUrl(path) {
     return ApiService.isBasePath(path) ? path : `${environment.apiPath}/${path}`;
   }
+
   static isBasePath(path) {
     return path.startsWith('http://') || path.startsWith('https://');
   }
+
   private toBody = (params: object): string => (params ? JSON.stringify(params) : '');
+
   private toQuery(params: object | any[], key: string = null, search = new URLSearchParams('')): URLSearchParams {
     if (params === undefined) {
       return search;
@@ -64,6 +67,7 @@ export class ApiService extends Http {
     }
     return super.get(apiUrl, options).map(res => res.json());
   }
+
   post(url, params = {}) {
     const apiUrl = ApiService.buildUrl(url);
     const body = this.toBody(params);
@@ -72,6 +76,7 @@ export class ApiService extends Http {
     }
     return super.post(apiUrl, body).map(res => res.json());
   }
+
   put(url, params = {}) {
     const apiUrl = ApiService.buildUrl(url);
     const body = this.toBody(params);
@@ -80,6 +85,7 @@ export class ApiService extends Http {
     }
     return super.put(apiUrl, body).map(res => res.json());
   }
+
   delete(url) {
     const apiUrl = ApiService.buildUrl(url);
     if (passthrough.indexOf(url) === -1) {

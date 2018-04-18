@@ -1,14 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { ConnectionBackend, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ApiService } from './shared/services/api/api.service';
+import { HeaderModule } from './header/header.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, RouterModule.forRoot([])],
+  imports: [BrowserModule, HeaderModule],
   providers: [
     {
       provide: ApiService,

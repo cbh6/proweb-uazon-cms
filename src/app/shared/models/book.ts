@@ -3,7 +3,7 @@ export class Book {
   isbn: string;
   // ...
 
-  constructor(obj: Object) {
+  constructor(obj: object) {
     this.title = obj['title'];
     this.isbn = obj['isbn'];
 
@@ -11,6 +11,6 @@ export class Book {
     Object.assign(this, obj);
   }
   isCheap() {
-    return this.price < 100;
+    // return this.price < 100;
   }
 }
