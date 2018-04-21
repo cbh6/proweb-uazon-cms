@@ -5,10 +5,11 @@ import { ConnectionBackend, RequestOptions } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ApiService } from './shared/services/api/api.service';
 import { LayoutModule } from './layout/layout.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, LayoutModule],
+  imports: [LayoutModule, SharedModule],
   providers: [
     {
       provide: ApiService,
