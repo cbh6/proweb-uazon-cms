@@ -5,6 +5,6 @@ import { Component, HostBinding } from '@angular/core';
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss']
 })
-export class UazHeaderComponent {
+export class HeaderComponent {
   @HostBinding('class.uaz-header') componentClass = true;
 }

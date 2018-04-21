@@ -5,7 +5,7 @@ import { Component, HostBinding } from '@angular/core';
   templateUrl: 'menu.component.html',
   styleUrls: ['menu.component.scss']
 })
-export class UazMenuComponent {
+export class MenuComponent {
   @HostBinding('class.uaz-menu') componentClass = true;
 
   sections: Array<{ icon: string; label: string; link: string }> = [

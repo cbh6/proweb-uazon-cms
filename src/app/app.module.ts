@@ -4,11 +4,11 @@ import { ConnectionBackend, RequestOptions } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ApiService } from './shared/services/api/api.service';
-import { HeaderModule } from './header/header.module';
+import { LayoutModule } from './layout/layout.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [BrowserModule, HeaderModule],
+  imports: [BrowserModule, LayoutModule],
   providers: [
     {
       provide: ApiService,
