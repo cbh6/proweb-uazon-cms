@@ -6,7 +6,22 @@
         <div class="content">Date de alta</div>
       </h2>
       <div class="ui divider"></div>
-      <form class="ui form" #registerForm="ngForm" (ngSubmit)="onSubmit();">
+
+      <div class="ui success message" *ngIf="status === 'success'">
+        <i class="close icon"></i>
+        <div class="header">
+          {{message}}
+        </div>
+      </div>
+      <div class="ui negative message" *ngIf="status === 'error'">
+        <i class="close icon"></i>
+        <div class="header">
+          Se ha producido un error en el registro.
+        </div>
+        <p>{{message}}</p>
+      </div>
+
+      <form class="ui form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm);">
         <div class="ui stacked segment">
           <div class="field">
             <label>Nombre y apellidos</label>

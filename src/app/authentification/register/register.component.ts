@@ -1,6 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { User } from '../../shared/models/user.model';
 import { UsersService } from '../../shared/services/api/users.service';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'uaz-register',
@@ -11,19 +12,29 @@ export class RegisterComponent implements OnInit {
   @HostBinding('class.uaz-register') componentClass = true;
 
   public user;
+  public status: string;
+  public message: string;
   constructor(private _userService: UsersService) {
     this.user = {};
     this.user.role = 'ROLE_CMS_PENDING';
-    console.log(this.user);
   }
 
   ngOnInit() {}
 
-  onSubmit() {
+  onSubmit(form) {
     console.log(this.user);
     this._userService.create(this.user).subscribe(
       response => {
-        console.log('r', response);
+        console.log(response);
+        this.status = response.status;
+        if (this.status === 'success') {
+          this.message = response.message;
+          this.user = { role: 'ROLE_CMS_PENDING' };
+          form.reset();
+        }
+        if (this.status === 'error') {
+          this.message = response.message;
+        }
       },
       error => {
         console.log('e', error);
