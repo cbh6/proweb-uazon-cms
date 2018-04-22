@@ -6,7 +6,7 @@
         <div class="content">Date de alta</div>
       </h2>
       <div class="ui divider"></div>
-      <form class="ui form" #registerForm="ngForm">
+      <form class="ui form" #registerForm="ngForm" (ngSubmit)="onSubmit();">
         <div class="ui stacked segment">
           <div class="field">
             <label>Nombre y apellidos</label>
@@ -30,11 +30,11 @@
           </div>
           <div class="field">
             <label>Contraseña</label>
-            <input name="contrasenya" placeholder="Contraseña" [(ngModel)]="user.password" type="text">
+            <input name="contrasenya" placeholder="Contraseña" [(ngModel)]="user.password" type="password">
           </div>
           <div class="field">
             <label>Repetir contraseña</label>
-            <input name="repetir_contrasenya" placeholder="Repetir contraseña" [(ngModel)]="user.paswordRepeat" type="text">
+            <input name="repetir_contrasenya" placeholder="Repetir contraseña" [(ngModel)]="user.paswordRepeat" type="password">
           </div>
           <input type="submit" class="ui fluid large blue button" value="Enviar" />
         </div>

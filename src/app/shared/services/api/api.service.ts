@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/do';
 
 // endpoints que se saltan la autentificacion pass through
-const passthrough = ['login', 'signup'];
+const passthrough = ['login', 'register'];
 
 @Injectable()
 export class ApiService extends Http {
@@ -71,6 +71,11 @@ export class ApiService extends Http {
   post(url, params = {}) {
     const apiUrl = ApiService.buildUrl(url);
     const body = this.toBody(params);
+
+    const options: any = {};
+    options.headers = new Headers();
+    options.headers.set('Content-Type', 'application/x-www-form-urlencoded');
+
     if (passthrough.indexOf(url) === -1) {
       // firmamos
     }

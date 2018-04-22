@@ -6,8 +6,7 @@ export class User {
   address: string;
   cp: number;
 
-  constructor() {
-    // forma rapida, asigname en this, los atributos de obj
-    // Object.assign(this, obj);
+  constructor(obj) {
+    Object.assign(this, obj);
   }
 }

@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  apiPath: 'http://urldemiapi'
+  // apiPath: 'http://proweb.local/api'
+  apiPath: 'http://localhost:8000/api'
 };
