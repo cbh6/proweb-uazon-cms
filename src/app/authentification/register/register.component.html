@@ -8,13 +8,11 @@
       <div class="ui divider"></div>
 
       <div class="ui success message" *ngIf="status === 'success'">
-        <i class="close icon"></i>
         <div class="header">
           {{message}}
         </div>
       </div>
       <div class="ui negative message" *ngIf="status === 'error'">
-        <i class="close icon"></i>
         <div class="header">
           Se ha producido un error en el registro.
         </div>

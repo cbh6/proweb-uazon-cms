@@ -12,11 +12,25 @@ export class UsersService {
     this.url = environment.apiPath;
   }
 
-  create(user: User): Observable<any> {
+  register(user: User): Observable<any> {
     const json = JSON.stringify(user);
     const params = 'json=' + json;
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
-    console.log(this.url, params, headers);
+
     return this.http.post(this.url + '/register', params, { headers });
+  }
+
+  login(user: User, getIdentity = null): Observable<any> {
+    const options = {} as any;
+    Object.assign(options, user);
+    console.log(options);
+    if (getIdentity != null) {
+      options.getIdentity = 'true';
+    }
+
+    const params = 'json=' + JSON.stringify(options);
+    console.log(params);
+    const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
+    return this.http.post(this.url + '/login', params, { headers });
   }
 }

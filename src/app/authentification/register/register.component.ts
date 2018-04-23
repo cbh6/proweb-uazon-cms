@@ -11,11 +11,11 @@ import { Observable } from 'rxjs/Observable';
 export class RegisterComponent implements OnInit {
   @HostBinding('class.uaz-register') componentClass = true;
 
-  public user;
+  public user: User;
   public status: string;
   public message: string;
   constructor(private _userService: UsersService) {
-    this.user = {};
+    this.user = new User({});
     this.user.role = 'ROLE_CMS_PENDING';
   }
 
@@ -23,13 +23,16 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(form) {
     console.log(this.user);
-    this._userService.create(this.user).subscribe(
+    this._userService.register(this.user).subscribe(
       response => {
         console.log(response);
         this.status = response.status;
         if (this.status === 'success') {
           this.message = response.message;
-          this.user = { role: 'ROLE_CMS_PENDING' };
+
+          this.user.reset();
+          this.user.role = 'ROLE_CMS_PENDING';
+
           form.reset();
         }
         if (this.status === 'error') {

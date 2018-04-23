@@ -1,5 +1,4 @@
 export class User {
-  title: number;
   name: string;
   email: string;
   role: string;
@@ -8,5 +7,13 @@ export class User {
 
   constructor(obj) {
     Object.assign(this, obj);
+  }
+
+  reset() {
+    this.name = '';
+    this.email = '';
+    this.role = '';
+    this.address = '';
+    this.cp = null;
   }
 }
