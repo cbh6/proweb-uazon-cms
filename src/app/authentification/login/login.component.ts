@@ -26,7 +26,6 @@ export class LoginComponent implements OnInit {
     // Obtain login token
     this._userService.login(this.user).subscribe(
       tokenRes => {
-        console.log('tokenRes', tokenRes);
         this.status = tokenRes.status;
         if (tokenRes.status === 'error') {
           this.message = tokenRes.message;
@@ -38,7 +37,6 @@ export class LoginComponent implements OnInit {
         // Obtain user login data
         this._userService.login(this.user, true).subscribe(
           identityRes => {
-            console.log('identityRes', identityRes);
             this.identity = identityRes;
             localStorage.setItem('identity', JSON.stringify(identityRes));
           },

@@ -33,4 +33,12 @@ export class UsersService {
     const headers = new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded');
     return this.http.post(this.url + '/login', params, { headers });
   }
+
+  getIdentity() {
+    return JSON.parse(localStorage.getItem('identity'));
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
 }

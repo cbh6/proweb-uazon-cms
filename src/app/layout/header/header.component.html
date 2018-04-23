@@ -2,9 +2,13 @@
     <div class="item">
         <h3>UAZON</h3>
     </div>
-    <uaz-menu></uaz-menu>
-    <div class="right menu">
+    <uaz-menu *ngIf="identity"></uaz-menu>
+    <div class="right menu" *ngIf="!identity">
         <a [routerLink]="'registro'" class="item">Registro</a>
         <a [routerLink]="'login'" class="item">Login</a>
+    </div>
+    <div class="right menu" *ngIf="identity">
+        <a href="#" class="item">{{identity.name}}</a>
+        <a href="#" class="item">Salir</a>
     </div>
 </div>

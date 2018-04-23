@@ -14,6 +14,7 @@ export class RegisterComponent implements OnInit {
   public user: User;
   public status: string;
   public message: string;
+
   constructor(private _userService: UsersService) {
     this.user = new User({});
     this.user.role = 'ROLE_CMS_PENDING';
