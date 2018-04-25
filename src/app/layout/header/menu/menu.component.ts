@@ -11,27 +11,27 @@ export class MenuComponent {
   sections: Array<{ icon: string; label: string; link: string }> = [
     {
       label: 'Libros',
-      link: '/books',
+      link: '/libros',
       icon: 'book icon'
     },
     {
       label: 'Autores',
-      link: '/authors',
+      link: '/autores',
       icon: 'pencil alternate icon'
     },
     {
       label: 'Pedidos',
-      link: '/orders',
+      link: '/pedidos',
       icon: 'euro sign icon'
     },
     {
       label: 'Comentarios',
-      link: '/comments',
+      link: '/comentarios',
       icon: 'comments outline icon'
     },
     {
       label: 'Usuarios',
-      link: '/users',
+      link: '/usuarios',
       icon: 'users icon'
     }
   ];

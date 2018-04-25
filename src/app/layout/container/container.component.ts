@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 
 @Component({
   selector: 'uaz-container',
   templateUrl: './container.component.html',
-  styleUrls: ['./container.component.css']
+  styleUrls: ['./container.component.scss']
 })
-export class ContainerComponent implements OnInit {
-  constructor() {}
+export class ContainerComponent {
+  @HostBinding('class.uaz-container') componentClass = true;
 
-  ngOnInit() {}
+  constructor() {}
 }
