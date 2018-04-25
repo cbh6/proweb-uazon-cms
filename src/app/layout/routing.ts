@@ -4,10 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 // Components
 import { LoginComponent } from '../authentification/login/login.component';
 import { RegisterComponent } from '../authentification/register/register.component';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 const appRoutes: Routes = [
   { path: '', component: LoginComponent },
+  { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'logout/:sure', component: LoginComponent },
   { path: 'registro', component: RegisterComponent },
   { path: '**', component: LoginComponent }
 ];

@@ -1,5 +1,5 @@
 <div class="ui top fixed labeled icon menu">
-    <div class="item">
+    <div [routerLink]="'dashboard'" class="item home-icon">
         <h3>UAZON</h3>
     </div>
     <uaz-menu *ngIf="identity"></uaz-menu>
@@ -9,6 +9,6 @@
     </div>
     <div class="right menu" *ngIf="identity">
         <a href="#" class="item">{{identity.name}}</a>
-        <a href="#" class="item">Salir</a>
+        <a [routerLink]="['logout', 1]" class="item">Salir</a>
     </div>
 </div>

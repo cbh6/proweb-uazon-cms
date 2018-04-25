@@ -1,4 +1,5 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../shared/models/user.model';
 import { UsersService } from '../../shared/services/api/users.service';
 import { Observable } from 'rxjs/Observable';
@@ -16,11 +17,14 @@ export class LoginComponent implements OnInit {
   public identity: object;
   public status: string;
   public message: string;
-  constructor(private _userService: UsersService) {
+
+  constructor(private _userService: UsersService, private _route: ActivatedRoute, private _router: Router) {
     this.user = new User({});
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.logout();
+  }
 
   onSubmit(form) {
     // Obtain login token
@@ -49,5 +53,22 @@ export class LoginComponent implements OnInit {
         console.log('e', error);
       }
     );
+  }
+
+  logout() {
+    this._route.params.subscribe(params => {
+      console.log('1');
+      const logout = +params['sure'];
+
+      if (logout === 1) {
+        localStorage.removeItem('identity');
+        localStorage.removeItem('token');
+
+        this.identity = null;
+        this.token = null;
+
+        this._router.navigate(['login']);
+      }
+    });
   }
 }
