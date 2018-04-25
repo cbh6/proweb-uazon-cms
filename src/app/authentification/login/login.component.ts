@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit {
   public status: string;
   public message: string;
 
-  constructor(private _userService: UsersService, private _route: ActivatedRoute, private _router: Router) {
+  constructor(private _usersService: UsersService, private _route: ActivatedRoute, private _router: Router) {
     this.user = new User({});
   }
 
@@ -28,7 +28,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form) {
     // Obtain login token
-    this._userService.login(this.user).subscribe(
+    this._usersService.login(this.user).subscribe(
       tokenRes => {
         this.status = tokenRes.status;
 
@@ -41,7 +41,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', JSON.stringify(tokenRes));
 
           // Obtain user login data
-          this._userService.login(this.user, true).subscribe(
+          this._usersService.login(this.user, true).subscribe(
             identityRes => {
               this.identity = identityRes;
               localStorage.setItem('identity', JSON.stringify(identityRes));
@@ -63,7 +63,6 @@ export class LoginComponent implements OnInit {
 
   logout() {
     this._route.params.subscribe(params => {
-      console.log('1');
       const logout = +params['sure'];
 
       if (logout === 1) {

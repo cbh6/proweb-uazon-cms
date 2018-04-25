@@ -8,6 +8,6 @@ import { BooksDetailComponent } from './books-detail/books-detail.component';
 @NgModule({
   imports: [SharedModule],
   declarations: [BooksComponent, BooksListComponent, BooksCreateComponent, BooksDetailComponent],
-  exports: [BooksComponent]
+  exports: [BooksComponent, BooksCreateComponent]
 })
 export class BooksModule {}

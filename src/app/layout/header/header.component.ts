@@ -12,15 +12,15 @@ export class HeaderComponent implements OnInit, DoCheck {
   public identity: object;
   public token: string;
 
-  constructor(private _userService: UsersService) {}
+  constructor(private _usersService: UsersService) {}
 
   ngOnInit() {
-    this.identity = this._userService.getIdentity();
-    this.token = this._userService.getToken();
+    this.identity = this._usersService.getIdentity();
+    this.token = this._usersService.getToken();
   }
 
   ngDoCheck() {
-    this.identity = this._userService.getIdentity();
-    this.token = this._userService.getToken();
+    this.identity = this._usersService.getIdentity();
+    this.token = this._usersService.getToken();
   }
 }

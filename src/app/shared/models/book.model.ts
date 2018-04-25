@@ -1,15 +1,17 @@
 export class Book {
-  title: string;
   isbn: string;
-  // ...
+  voto: number;
+  num_voto: number;
+  n_pags: number;
+  precio: number;
+  titulo: string;
+  editorial: string;
+  atributos_extra: object;
 
   constructor(obj: object) {
-    this.title = obj['title'];
-    this.isbn = obj['isbn'];
-
-    // forma rapida, asigname en this, los atributos de obj
     Object.assign(this, obj);
   }
+
   isCheap() {
     // return this.price < 100;
   }

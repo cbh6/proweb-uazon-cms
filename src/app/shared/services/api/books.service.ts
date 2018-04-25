@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ApiService } from './api.service';
-import { Book } from '../../models/book';
+import { Book } from '../../models/book.model';
 @Injectable()
 export class BooksService {
   // es private porque no queremos que nadie envie eventos
@@ -17,9 +17,7 @@ export class BooksService {
 
   // esto se implementa en resource, bookservice extenderá resource por lo que estará disponible
   list() {
-    this.apiService
-      .get('books')
-      .map((res: any[]) => this.books$.next(res.map(item => new Book(item))));
+    this.apiService.get('books').map((res: any[]) => this.books$.next(res.map(item => new Book(item))));
   }
 
   // get from codesandbox example

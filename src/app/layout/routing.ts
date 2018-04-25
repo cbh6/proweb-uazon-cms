@@ -14,10 +14,10 @@ const appRoutes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout/:sure', component: LoginComponent },
-  { path: 'registro', component: RegisterComponent },
-  { path: 'libros', component: BooksComponent },
-  { path: 'libros/:id', component: BooksDetailComponent },
-  { path: 'libros/nuevo-libro', component: BooksCreateComponent },
+  { path: 'register', component: RegisterComponent },
+  { path: 'books', component: BooksComponent },
+  { path: 'books/:id', component: BooksDetailComponent },
+  { path: 'books-new', component: BooksCreateComponent },
   { path: '**', component: LoginComponent }
 ];
 

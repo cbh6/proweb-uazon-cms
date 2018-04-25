@@ -15,7 +15,7 @@ export class RegisterComponent implements OnInit {
   public status: string;
   public message: string;
 
-  constructor(private _userService: UsersService) {
+  constructor(private _usersService: UsersService) {
     this.user = new User({});
     this.user.role = 'ROLE_CMS_PENDING';
   }
@@ -24,7 +24,7 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(form) {
     console.log(this.user);
-    this._userService.register(this.user).subscribe(
+    this._usersService.register(this.user).subscribe(
       response => {
         console.log(response);
         this.status = response.status;
