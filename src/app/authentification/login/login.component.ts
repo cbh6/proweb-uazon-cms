@@ -31,23 +31,29 @@ export class LoginComponent implements OnInit {
     this._userService.login(this.user).subscribe(
       tokenRes => {
         this.status = tokenRes.status;
+
+        // Login failed (status error)
         if (tokenRes.status === 'error') {
           this.message = tokenRes.message;
+          // Login successful
+        } else {
+          this.token = tokenRes;
+          localStorage.setItem('token', JSON.stringify(tokenRes));
+
+          // Obtain user login data
+          this._userService.login(this.user, true).subscribe(
+            identityRes => {
+              this.identity = identityRes;
+              localStorage.setItem('identity', JSON.stringify(identityRes));
+
+              // Redirect to dashboard
+              this._router.navigate(['dashboard']);
+            },
+            error => {
+              console.log('e', error);
+            }
+          );
         }
-
-        this.token = tokenRes;
-        localStorage.setItem('token', JSON.stringify(tokenRes));
-
-        // Obtain user login data
-        this._userService.login(this.user, true).subscribe(
-          identityRes => {
-            this.identity = identityRes;
-            localStorage.setItem('identity', JSON.stringify(identityRes));
-          },
-          error => {
-            console.log('e', error);
-          }
-        );
       },
       error => {
         console.log('e', error);

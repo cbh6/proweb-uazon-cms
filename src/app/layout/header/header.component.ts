@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding } from '@angular/core';
+import { Component, OnInit, DoCheck, HostBinding } from '@angular/core';
 import { UsersService } from '../../shared/services/api/users.service';
 
 @Component({
@@ -6,7 +6,7 @@ import { UsersService } from '../../shared/services/api/users.service';
   templateUrl: 'header.component.html',
   styleUrls: ['header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, DoCheck {
   @HostBinding('class.uaz-header') componentClass = true;
 
   public identity: object;
@@ -15,6 +15,11 @@ export class HeaderComponent implements OnInit {
   constructor(private _userService: UsersService) {}
 
   ngOnInit() {
+    this.identity = this._userService.getIdentity();
+    this.token = this._userService.getToken();
+  }
+
+  ngDoCheck() {
     this.identity = this._userService.getIdentity();
     this.token = this._userService.getToken();
   }
