@@ -1,3 +1,26 @@
-<p>
-  books-list works!
-</p>
+<div class="ui segment" *ngIf="!books">
+  <div class="ui active inverted dimmer">
+    <div class="ui text loader">Loading</div>
+  </div>
+  <p></p>
+</div>
+<table class="ui selectable table" *ngIf="books">
+  <thead>
+    <tr>
+      <th>Titulo</th>
+      <th>Editorial</th>
+      <th>Nº de páginas</th>
+      <th>Precio</th>
+      <th>ISBN</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let book of books">
+      <td>{{book.titulo}}</td>
+      <td>{{book.editorial}}</td>
+      <td>{{book.num_pags}}</td>
+      <td>{{book.precio}}</td>
+      <td>{{book.isbn}}</td>
+    </tr>
+  </tbody>
+</table>

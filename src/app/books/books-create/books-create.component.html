@@ -2,25 +2,25 @@
   <form #newBook="ngForm" (ngSubmit)="onSubmit(newBook)" class="ui form">
     <div class="field" [class.error]="!titulo.valid && titulo.touched">
       <label>Título</label>
-      <input name="titulo" #titulo="ngModel" [(ngModel)]="book.titulo" placeholder="Título" type="text">
+      <input name="titulo" #titulo="ngModel" [(ngModel)]="book.titulo" required placeholder="Título" type="text">
     </div>
     <div class="field" [class.error]="!isbn.valid && isbn.touched">
       <label>ISBN</label>
-      <input name="isbn" #isbn="ngModel" [(ngModel)]="book.isbn" placeholder="ISBN" type="text">
+      <input name="isbn" #isbn="ngModel" [(ngModel)]="book.isbn" required placeholder="ISBN" type="text">
     </div>
     <div class="field" [class.error]="!precio.valid && precio.touched">
       <label>Precio</label>
-      <input name="precio" #precio="ngModel" [(ngModel)]="book.precio" placeholder="precio" type="text">
+      <input name="precio" #precio="ngModel" [(ngModel)]="book.precio" required placeholder="precio" type="text">
     </div>
     <div class="field" [class.error]="!editorial.valid && editorial.touched">
       <label>Editorial</label>
-      <input name="editorial" #editorial="ngModel" [(ngModel)]="book.editorial" placeholder="editorial" type="text">
+      <input name="editorial" #editorial="ngModel" [(ngModel)]="book.editorial" required placeholder="editorial" type="text">
     </div>
     <div class="field" [class.error]="!numpags.valid && numpags.touched">
       <label>Número de páginas</label>
-      <input name="n_pags" #numpags="ngModel" [(ngModel)]="book.n_pags" placeholder="n_pags" type="number">
+      <input name="n_pags" #numpags="ngModel" [(ngModel)]="book.n_pags" required placeholder="n_pags" type="number">
     </div>
     <!-- atributos extra: listado para añadir o quitar elementos. Como un to-do list -->
-    <button class="ui button blue" type="submit">Guardar</button>
+    <button class="ui button blue" type="submit" [disabled]="!newBook.form.valid">Guardar</button>
   </form>
 </div>

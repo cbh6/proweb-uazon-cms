@@ -26,18 +26,13 @@ export class RegisterComponent implements OnInit {
     console.log(this.user);
     this._usersService.register(this.user).subscribe(
       response => {
-        console.log(response);
         this.status = response.status;
+        this.message = response.message;
         if (this.status === 'success') {
-          this.message = response.message;
-
           this.user.reset();
           this.user.role = 'ROLE_CMS_PENDING';
 
           form.reset();
-        }
-        if (this.status === 'error') {
-          this.message = response.message;
         }
       },
       error => {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UsersService } from '../../shared/services/api/users.service';
+import { BooksService } from '../books.service';
 import { Book } from '../../shared/models/book.model';
 
 @Component({
@@ -12,8 +13,15 @@ export class BooksCreateComponent implements OnInit {
   public identity;
   public token;
   public book: Book;
+  public status: string;
+  public message: string;
 
-  constructor(private _route: ActivatedRoute, private _router: Router, private _usersService: UsersService) {
+  constructor(
+    private _route: ActivatedRoute,
+    private _router: Router,
+    private _usersService: UsersService,
+    private _booksService: BooksService
+  ) {
     this.identity = this._usersService.getIdentity();
     this.token = this._usersService.getToken();
   }
@@ -27,6 +35,14 @@ export class BooksCreateComponent implements OnInit {
   }
 
   onSubmit(form) {
-    console.log(this.book);
+    this._booksService.create(this.token, this.book).subscribe(
+      response => {
+        this.status = response.status;
+        this.message = response.message;
+      },
+      error => {
+        console.log(error as any);
+      }
+    );
   }
 }

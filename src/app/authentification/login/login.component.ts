@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
           // Login successful
         } else {
           this.token = tokenRes;
-          localStorage.setItem('token', JSON.stringify(tokenRes));
+          localStorage.setItem('token', tokenRes);
 
           // Obtain user login data
           this._usersService.login(this.user, true).subscribe(
