@@ -39,6 +39,7 @@ export class BooksCreateComponent implements OnInit {
       response => {
         this.status = response.status;
         this.message = response.message;
+        this._router.navigate(['books']);
       },
       error => {
         console.log(error as any);

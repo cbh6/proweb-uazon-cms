@@ -20,13 +20,11 @@ export class BooksListComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.identity);
     if (this.identity == null) {
       this._router.navigate(['login']);
     } else {
       this._booksService.list(this.token).subscribe(
         response => {
-          console.log(response.data);
           this.books = response.data;
         },
         error => {
