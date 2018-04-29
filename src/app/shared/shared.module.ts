@@ -13,6 +13,9 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { ApiService, apiServiceCreator } from './services/api/api.service';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 
+import { EqualValidator } from './directives/equal-validator.directive';
+import { IsbnValidator } from './directives/isbn-validator.directive';
+
 const SHARED_MODULES = [
   BrowserModule,
   FormsModule,
@@ -22,6 +25,8 @@ const SHARED_MODULES = [
   HttpModule,
   BrowserAnimationsModule
 ];
+
+const SHARED_DIRECTIVES = [EqualValidator, IsbnValidator];
 @NgModule({
   imports: [...SHARED_MODULES, ToastrModule.forRoot()],
   providers: [
@@ -34,7 +39,7 @@ const SHARED_MODULES = [
       deps: [HttpClient]
     }
   ],
-  exports: [...SHARED_MODULES, BackButtonComponent],
-  declarations: [PageNotFoundComponent, BackButtonComponent]
+  declarations: [SHARED_DIRECTIVES, PageNotFoundComponent, BackButtonComponent],
+  exports: [...SHARED_MODULES, SHARED_DIRECTIVES, BackButtonComponent]
 })
 export class SharedModule {}
