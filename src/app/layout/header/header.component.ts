@@ -1,5 +1,5 @@
 import { Component, OnInit, DoCheck, HostBinding } from '@angular/core';
-import { UsersService } from '../../shared/services/api/users.service';
+import { AuthService } from '../../shared/services/api/auth.service';
 
 @Component({
   selector: 'uaz-header',
@@ -12,15 +12,13 @@ export class HeaderComponent implements OnInit, DoCheck {
   public identity: object;
   public token: string;
 
-  constructor(private _usersService: UsersService) {}
+  constructor(private _authService: AuthService) {}
 
   ngOnInit() {
-    this.identity = this._usersService.getIdentity();
-    this.token = this._usersService.getToken();
+    this.identity = this._authService.getIdentity();
   }
 
   ngDoCheck() {
-    this.identity = this._usersService.getIdentity();
-    this.token = this._usersService.getToken();
+    this.identity = this._authService.getIdentity();
   }
 }

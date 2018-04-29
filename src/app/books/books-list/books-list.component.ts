@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BooksService } from '../books.service';
-import { UsersService } from '../../shared/services/api/users.service';
+import { AuthService } from '../../shared/services/api/auth.service';
 import { Book } from '../../shared/models/book.model';
 import { Router } from '@angular/router';
 
@@ -14,23 +14,16 @@ export class BooksListComponent implements OnInit {
   public identity: object;
   public token: string;
 
-  constructor(private _router: Router, private _booksService: BooksService, private _usersService: UsersService) {
-    this.identity = this._usersService.getIdentity();
-    this.token = this._usersService.getToken();
-  }
+  constructor(private _router: Router, private _booksService: BooksService, private _authService: AuthService) {}
 
   ngOnInit() {
-    if (this.identity == null) {
-      this._router.navigate(['login']);
-    } else {
-      this._booksService.list(this.token).subscribe(
-        response => {
-          this.books = response.data;
-        },
-        error => {
-          console.log(error as any);
-        }
-      );
-    }
+    this._booksService.list(this._authService.getToken()).subscribe(
+      response => {
+        this.books = response.data;
+      },
+      error => {
+        console.log(error as any);
+      }
+    );
   }
 }

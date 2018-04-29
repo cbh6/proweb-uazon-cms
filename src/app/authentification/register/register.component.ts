@@ -1,7 +1,9 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
+import { Router } from '@angular/router';
 import { User } from '../../shared/models/user.model';
-import { UsersService } from '../../shared/services/api/users.service';
+import { AuthService } from '../../shared/services/api/auth.service';
 import { Observable } from 'rxjs/Observable';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'uaz-register',
@@ -15,7 +17,7 @@ export class RegisterComponent implements OnInit {
   public status: string;
   public message: string;
 
-  constructor(private _usersService: UsersService) {
+  constructor(private _authService: AuthService, private _toastr: ToastrService, private _router: Router) {
     this.user = new User({});
     this.user.role = 'ROLE_CMS_PENDING';
   }
@@ -24,15 +26,19 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(form) {
     console.log(this.user);
-    this._usersService.register(this.user).subscribe(
+    this._authService.register(this.user).subscribe(
       response => {
         this.status = response.status;
-        this.message = response.message;
         if (this.status === 'success') {
-          this.user.reset();
-          this.user.role = 'ROLE_CMS_PENDING';
+          this._toastr.success('Usuario registrado correctamente');
+          this._router.navigate(['dashboard']);
+
+          // this.user.reset();
+          // this.user.role = 'ROLE_CMS_PENDING';
 
           form.reset();
+        } else {
+          this.message = response.message;
         }
       },
       error => {

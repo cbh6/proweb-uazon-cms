@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../shared/models/user.model';
-import { UsersService } from '../../shared/services/api/users.service';
+import { AuthService } from '../../shared/services/api/auth.service';
 import { ApiService } from '../../shared/services/api/api.service';
 import { Observable } from 'rxjs/Observable';
 import { ToastrService } from 'ngx-toastr';
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private _toastr: ToastrService,
     private _apiService: ApiService,
-    private _usersService: UsersService,
+    private _authService: AuthService,
     private _route: ActivatedRoute,
     private _router: Router
   ) {
@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit(form) {
     // Obtain login token
-    this._usersService.login(this.user).subscribe(
+    this._authService.login(this.user).subscribe(
       tokenRes => {
         this.status = tokenRes.status;
         // Login failed (status error)
@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
           this.token = tokenRes;
           localStorage.setItem('token', tokenRes);
           // Obtain user login data
-          this._usersService.login(this.user, true).subscribe(
+          this._authService.login(this.user, true).subscribe(
             identityRes => {
               this.identity = identityRes;
               localStorage.setItem('identity', JSON.stringify(identityRes));

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { UsersService } from '../../shared/services/api/users.service';
 import { BooksService } from '../books.service';
+import { AuthService } from '../../shared/services/api/auth.service';
 import { Book } from '../../shared/models/book.model';
 
 @Component({
@@ -11,8 +11,6 @@ import { Book } from '../../shared/models/book.model';
   styleUrls: ['./books-create.component.css']
 })
 export class BooksCreateComponent implements OnInit {
-  public identity;
-  public token;
   public book: Book;
   public status: string;
   public message: string;
@@ -21,24 +19,16 @@ export class BooksCreateComponent implements OnInit {
     private _toastr: ToastrService,
     private _route: ActivatedRoute,
     private _router: Router,
-    private _usersService: UsersService,
+    private _authService: AuthService,
     private _booksService: BooksService
-  ) {
-    this.identity = this._usersService.getIdentity();
-    this.token = this._usersService.getToken();
-  }
+  ) {}
 
   ngOnInit() {
-    if (this.identity == null || !this.identity.sub) {
-      this._router.navigate(['login']);
-    } else {
-      this.book = new Book({});
-    }
+    this.book = new Book({});
   }
 
   onSubmit(form) {
-    console.log(this.token);
-    this._booksService.create(this.token, this.book).subscribe(
+    this._booksService.create(this._authService.getToken(), this.book).subscribe(
       response => {
         this.status = response.status;
         this.message = response.message;

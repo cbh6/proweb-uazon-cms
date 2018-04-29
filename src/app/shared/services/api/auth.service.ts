@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { User } from '../../models/user.model';
 
 @Injectable()
-export class UsersService {
+export class AuthService {
   constructor(private _apiService: ApiService) {}
 
   register(user: User): Observable<any> {

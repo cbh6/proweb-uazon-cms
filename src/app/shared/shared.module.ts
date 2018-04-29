@@ -7,16 +7,26 @@ import { HttpClientModule, HttpClient } from '@angular/common/http'; // replaces
 import { HttpModule } from '@angular/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { UsersService } from './services/api/users.service';
+import { AuthService } from './services/api/auth.service';
+import { AuthGuardService } from './services/auth-guard.service';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ApiService, apiServiceCreator } from './services/api/api.service';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 
-const SHARED_MODULES = [BrowserModule, FormsModule, RouterModule, CommonModule, HttpClientModule, HttpModule];
+const SHARED_MODULES = [
+  BrowserModule,
+  FormsModule,
+  RouterModule,
+  CommonModule,
+  HttpClientModule,
+  HttpModule,
+  BrowserAnimationsModule
+];
 @NgModule({
-  imports: [...SHARED_MODULES, BrowserAnimationsModule, ToastrModule.forRoot()],
+  imports: [...SHARED_MODULES, ToastrModule.forRoot()],
   providers: [
-    UsersService,
+    AuthService,
+    AuthGuardService,
     // Providing the ApplicationHttpClient so it could be used as a service.
     {
       provide: ApiService,
