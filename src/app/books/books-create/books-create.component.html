@@ -1,26 +1,33 @@
 <div class="ui raised container">
-  <h1 class="ui header">Nuevo libro
+  <h1 class="ui header">
+    <i class="icons">
+      <i class="book icon"></i>
+      <i class="corner plus icon"></i>
+    </i>Nuevo libro
     <uaz-back-button></uaz-back-button>
   </h1>
   <div class="ui blue segment">
     <form #newBook="ngForm" (ngSubmit)="onSubmit(newBook)" class="ui form">
-      <div class="field" [class.error]="!titulo.valid && titulo.touched">
+      <div class="field required" [class.error]="!titulo.valid && titulo.touched">
         <label>Título</label>
         <input name="titulo" #titulo="ngModel" [(ngModel)]="book.titulo" required placeholder="Título" type="text">
       </div>
-      <div class="field" [class.error]="!isbn.valid && isbn.touched">
+      <div class="field required" [class.error]="!isbn.valid && isbn.touched">
         <label>ISBN</label>
-        <input name="isbn" #isbn="ngModel" [(ngModel)]="book.isbn" required placeholder="ISBN" type="text">
+        <input name="isbn" #isbn="ngModel" [(ngModel)]="book.isbn" validateIsbn required maxlength="13" placeholder="ISBN" type="text">
+        <small [hidden]="isbn.valid || !isbn.touched">
+          ISBN no válido
+        </small>
       </div>
-      <div class="field" [class.error]="!precio.valid && precio.touched">
+      <div class="field required" [class.error]="!precio.valid && precio.touched">
         <label>Precio</label>
         <input name="precio" #precio="ngModel" [(ngModel)]="book.precio" required placeholder="precio" type="text">
       </div>
-      <div class="field" [class.error]="!editorial.valid && editorial.touched">
+      <div class="field required" [class.error]="!editorial.valid && editorial.touched">
         <label>Editorial</label>
         <input name="editorial" #editorial="ngModel" [(ngModel)]="book.editorial" required placeholder="editorial" type="text">
       </div>
-      <div class="field" [class.error]="!numpags.valid && numpags.touched">
+      <div class="field required" [class.error]="!numpags.valid && numpags.touched">
         <label>Número de páginas</label>
         <input name="n_pags" #numpags="ngModel" [(ngModel)]="book.n_pags" required placeholder="n_pags" type="number">
       </div>

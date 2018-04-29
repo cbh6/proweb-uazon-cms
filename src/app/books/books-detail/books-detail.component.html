@@ -9,7 +9,6 @@
   </h1>
 
   <div class="ui blue segment">
-    <!-- <div *ngIf="loading" class="ui active centered inline loader"></div> -->
     <form #editBook="ngForm" [class.loading]="loading" (ngSubmit)="onSubmit(editBook)" class="ui form">
       <div class="field required" [class.error]="!titulo.valid && titulo.touched">
         <label>Título</label>
@@ -17,7 +16,7 @@
       </div>
       <div class="field required" [class.error]="!isbn.valid && isbn.touched">
         <label>ISBN</label>
-        <input name="isbn" #isbn="ngModel" [(ngModel)]="book.isbn" [disabled]="!editing" validateIsbn required maxlength="17" placeholder="ISBN"
+        <input name="isbn" #isbn="ngModel" [(ngModel)]="book.isbn" [disabled]="!editing" validateIsbn required maxlength="13" placeholder="ISBN"
           type="text">
         <small [hidden]="isbn.valid || !isbn.touched">
           ISBN no válido

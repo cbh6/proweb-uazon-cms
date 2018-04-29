@@ -8,7 +8,7 @@ import { Book } from '../../shared/models/book.model';
 @Component({
   selector: 'uaz-books-create',
   templateUrl: './books-create.component.html',
-  styleUrls: ['./books-create.component.css']
+  styleUrls: ['./books-create.component.scss']
 })
 export class BooksCreateComponent implements OnInit {
   public book: Book;
@@ -25,9 +25,11 @@ export class BooksCreateComponent implements OnInit {
 
   ngOnInit() {
     this.book = new Book({});
+    this.book.init();
   }
 
   onSubmit(form) {
+    this.book.isbn = parseInt(this.book.isbn.toString().replace(/\-/g, ''), 10);
     this._booksService.create(this._authService.getToken(), this.book).subscribe(
       response => {
         this.status = response.status;
@@ -36,6 +38,7 @@ export class BooksCreateComponent implements OnInit {
         this._router.navigate(['books']);
       },
       error => {
+        this._toastr.error('Se ha producido un error inesperado al modificar el libro');
         console.log(error as any);
       }
     );

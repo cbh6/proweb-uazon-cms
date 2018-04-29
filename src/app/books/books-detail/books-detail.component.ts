@@ -45,6 +45,7 @@ export class BooksDetailComponent implements OnInit {
   }
 
   onSubmit(form) {
+    this.book.isbn = parseInt(this.book.isbn.toString().replace(/\-/g, ''), 10);
     this._booksService.edit(this._authService.getToken(), this.book).subscribe(
       response => {
         this._toastr.success('Libro modificado correctamente');

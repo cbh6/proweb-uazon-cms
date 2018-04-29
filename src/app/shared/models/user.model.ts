@@ -17,5 +17,7 @@ export class User {
     this.role = '';
     this.address = '';
     this.cp = null;
+    this.password = '';
+    this.passwordRepeat = '';
   }
 }
