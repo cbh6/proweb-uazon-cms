@@ -1,29 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs/Observable';
 import { Book } from '../shared/models/book.model';
+import { ApiService } from '../shared/services/api/api.service';
 
 @Injectable()
 export class BooksService {
   public url: string;
 
-  constructor(public http: HttpClient) {
-    this.url = environment.apiPath;
-  }
+  constructor(private _apiService: ApiService) {}
 
   create(token, book: Book): Observable<any> {
-    const json = JSON.stringify(book);
-    const params = 'json=' + json;
-    const headers = new HttpHeaders()
-      .set('Content-Type', 'application/x-www-form-urlencoded')
-      .set('Authorization', token);
-
-    return this.http.post(this.url + '/libros', params, { headers });
+    const params = `json=${JSON.stringify(book)}`;
+    return this._apiService.Post('libros', params, token);
   }
 
   list(token): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', token);
-    return this.http.get(this.url + '/libros', { headers });
+    // const headers = new HttpHeaders().set('Authorization', token);
+    // return this.http.get(this.url + '/libros', { headers });
+    return this._apiService.Get('libros', token);
   }
 }

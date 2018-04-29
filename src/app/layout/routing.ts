@@ -11,7 +11,7 @@ import { BooksCreateComponent } from '../books/books-create/books-create.compone
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', component: DashboardComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout/:sure', component: LoginComponent },

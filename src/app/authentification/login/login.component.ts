@@ -2,7 +2,9 @@ import { Component, OnInit, HostBinding } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../../shared/models/user.model';
 import { UsersService } from '../../shared/services/api/users.service';
+import { ApiService } from '../../shared/services/api/api.service';
 import { Observable } from 'rxjs/Observable';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'uaz-login',
@@ -18,7 +20,13 @@ export class LoginComponent implements OnInit {
   public status: string;
   public message: string;
 
-  constructor(private _usersService: UsersService, private _route: ActivatedRoute, private _router: Router) {
+  constructor(
+    private _toastr: ToastrService,
+    private _apiService: ApiService,
+    private _usersService: UsersService,
+    private _route: ActivatedRoute,
+    private _router: Router
+  ) {
     this.user = new User({});
   }
 
@@ -31,7 +39,6 @@ export class LoginComponent implements OnInit {
     this._usersService.login(this.user).subscribe(
       tokenRes => {
         this.status = tokenRes.status;
-
         // Login failed (status error)
         if (tokenRes.status === 'error') {
           this.message = tokenRes.message;
@@ -39,13 +46,12 @@ export class LoginComponent implements OnInit {
         } else {
           this.token = tokenRes;
           localStorage.setItem('token', tokenRes);
-
           // Obtain user login data
           this._usersService.login(this.user, true).subscribe(
             identityRes => {
               this.identity = identityRes;
               localStorage.setItem('identity', JSON.stringify(identityRes));
-
+              this._toastr.success('Login correcto');
               // Redirect to dashboard
               this._router.navigate(['dashboard']);
             },

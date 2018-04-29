@@ -1,4 +1,10 @@
-<div>
-  <h1 class="ui header">Libros</h1>
+<div class="ui raised container">
+  <h1 class="ui header">Libros
+    <button class="ui blue button right floated" [routerLink]="['/books-new']">
+      <i class="plus icon"></i> Nuevo libro
+    </button>
+  </h1>
+  <!-- <div class="ui blue segment"> -->
   <uaz-books-list></uaz-books-list>
+  <!-- </div> -->
 </div>

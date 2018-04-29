@@ -1,10 +1,5 @@
-<div class="ui segment" *ngIf="!books">
-  <div class="ui active inverted dimmer">
-    <div class="ui text loader">Loading</div>
-  </div>
-  <p></p>
-</div>
-<table class="ui selectable table" *ngIf="books">
+<div *ngIf="!books" class="ui active centered inline loader"></div>
+<table class="ui blue selectable table" *ngIf="books">
   <thead>
     <tr>
       <th>Titulo</th>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewContainerRef } from '@angular/core';
 
 @Component({
   selector: 'uaz-books',
@@ -7,6 +7,5 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BooksComponent implements OnInit {
   constructor() {}
-
   ngOnInit() {}
 }

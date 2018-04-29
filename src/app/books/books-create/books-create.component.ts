@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UsersService } from '../../shared/services/api/users.service';
 import { BooksService } from '../books.service';
 import { Book } from '../../shared/models/book.model';
@@ -17,6 +18,7 @@ export class BooksCreateComponent implements OnInit {
   public message: string;
 
   constructor(
+    private _toastr: ToastrService,
     private _route: ActivatedRoute,
     private _router: Router,
     private _usersService: UsersService,
@@ -35,10 +37,12 @@ export class BooksCreateComponent implements OnInit {
   }
 
   onSubmit(form) {
+    console.log(this.token);
     this._booksService.create(this.token, this.book).subscribe(
       response => {
         this.status = response.status;
         this.message = response.message;
+        this._toastr.success('Libro creado correctamente');
         this._router.navigate(['books']);
       },
       error => {
