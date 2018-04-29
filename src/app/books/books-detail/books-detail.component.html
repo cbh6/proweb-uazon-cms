@@ -1,13 +1,43 @@
 <div class="ui raised container">
-  <h1 class="ui header">libro
+  <h1 class="ui header">
+    <i class="icons">
+      <i class="book icon"></i>
+      <i class="corner pencil icon"></i>
+    </i> Detalle de libro
     <uaz-back-button></uaz-back-button>
+    <button class="ui button right floated" [ngClass]="[editing  ? 'green' : 'gray']" (click)="toggleEdit()">Editar</button>
   </h1>
+
   <div class="ui blue segment">
-    <form class="ui form">
-      <div class="field">
+    <!-- <div *ngIf="loading" class="ui active centered inline loader"></div> -->
+    <form #editBook="ngForm" [class.loading]="loading" (ngSubmit)="onSubmit(editBook)" class="ui form">
+      <div class="field required" [class.error]="!titulo.valid && titulo.touched">
         <label>Título</label>
-        <input name="titulo" [(ngModel)]="book.titulo" required placeholder="Título" type="text">
+        <input name="titulo" #titulo="ngModel" [(ngModel)]="book.titulo" [disabled]="!editing" required placeholder="Título" type="text">
       </div>
+      <div class="field required" [class.error]="!isbn.valid && isbn.touched">
+        <label>ISBN</label>
+        <input name="isbn" #isbn="ngModel" [(ngModel)]="book.isbn" [disabled]="!editing" validateIsbn required maxlength="17" placeholder="ISBN"
+          type="text">
+        <small [hidden]="isbn.valid || !isbn.touched">
+          ISBN no válido
+        </small>
+      </div>
+      <div class="field required" [class.error]="!precio.valid && precio.touched">
+        <label>Precio</label>
+        <input name="precio" #precio="ngModel" [(ngModel)]="book.precio" [disabled]="!editing" required placeholder="precio" type="text">
+      </div>
+      <div class="field required" [class.error]="!editorial.valid && editorial.touched">
+        <label>Editorial</label>
+        <input name="editorial" #editorial="ngModel" [(ngModel)]="book.editorial" [disabled]="!editing" required placeholder="editorial"
+          type="text">
+      </div>
+      <div class="field required" [class.error]="!numpags.valid && numpags.touched">
+        <label>Número de páginas</label>
+        <input name="n_pags" #numpags="ngModel" [(ngModel)]="book.n_pags" [disabled]="!editing" required placeholder="n_pags" type="number">
+      </div>
+      <!-- atributos extra: listado para añadir o quitar elementos. Como un to-do list -->
+      <button class="ui button blue" type="submit" [disabled]="!editBook.form.valid || !editing">Guardar</button>
     </form>
   </div>
 </div>

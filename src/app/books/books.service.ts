@@ -15,6 +15,11 @@ export class BooksService {
     return this._apiService.Post('libros', params, token);
   }
 
+  edit(token, book: Book): Observable<any> {
+    const params = `json=${JSON.stringify(book)}`;
+    return this._apiService.Put(`libros/${book.id}`, params, token);
+  }
+
   list(token): Observable<any> {
     // const headers = new HttpHeaders().set('Authorization', token);
     // return this.http.get(this.url + '/libros', { headers });

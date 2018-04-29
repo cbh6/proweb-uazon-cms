@@ -4,6 +4,8 @@ export class User {
   role: string;
   address: string;
   cp: number;
+  password: string;
+  passwordRepeat: string;
 
   constructor(obj) {
     Object.assign(this, obj);

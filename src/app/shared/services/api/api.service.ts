@@ -47,7 +47,6 @@ export class ApiService {
    * @returns {Observable}
    */
   public Post(endPoint: string, params, token?: string): Observable<any> {
-    console.log(token);
     const apiUrl = ApiService.buildUrl(endPoint);
 
     const options: any = {};
@@ -65,11 +64,20 @@ export class ApiService {
    * PUT request
    * @param {string} endPoint end point of the api
    * @param {Object} params body of the request.
+   * @param {string} token optional auth token
    * @returns {Observable}
    */
-  public Put(endPoint: string, params: object): Observable<any> {
+  public Put(endPoint: string, params, token?: string): Observable<any> {
     const apiUrl = ApiService.buildUrl(endPoint);
-    const options = {};
+
+    const options: any = {};
+    const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+
+    if (token) {
+      headers['Authorization'] = token;
+    }
+
+    options.headers = new HttpHeaders(headers);
     return this.http.put(apiUrl, params, options);
   }
 

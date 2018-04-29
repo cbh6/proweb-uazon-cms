@@ -22,7 +22,14 @@ export class RegisterComponent implements OnInit {
     this.user.role = 'ROLE_CMS_PENDING';
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.user.name = '';
+    this.user.email = '';
+    this.user.address = '';
+    this.user.cp = null;
+    this.user.password = '';
+    this.user.passwordRepeat = '';
+  }
 
   onSubmit(form) {
     console.log(this.user);

@@ -8,9 +8,9 @@
       <div class="ui divider"></div>
 
       <div class="ui success message" *ngIf="status === 'success'">
-        <div class="header">
+        <p>
           {{message}}
-        </div>
+        </p>
       </div>
       <div class="ui negative message" *ngIf="status === 'error'">
         <div class="header">
@@ -21,35 +21,42 @@
 
       <form class="ui form" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm);">
         <div class="ui stacked segment">
-          <div class="field">
+          <div class="field required" [class.error]="name.invalid && name.touched">
             <label>Nombre y apellidos</label>
-            <input name="nombre" placeholder="Nombre y apellidos" [(ngModel)]="user.name" type="text">
+            <input name="name" #name="ngModel" [(ngModel)]="user.name" placeholder="Nombre y apellidos" required type="text">
           </div>
-          <div class="field">
+          <div class="field required" [class.error]="email.invalid && email.touched">
             <label>Email</label>
-            <input name="email" placeholder="Email" [(ngModel)]="user.email" type="email">
+            <input name="email" #email="ngModel" [(ngModel)]="user.email" placeholder="Email" required email type="email">
+            <small [hidden]="email.valid || !email.touched">
+              Formato de email inválido
+            </small>
           </div>
           <!-- <div class="field">
         <label>País</label>
         <input name="pais" placeholder="País" type="text">
       </div> -->
-          <div class="field">
+          <div class="field required" [class.error]="!address.valid && address.touched">
             <label>Dirección</label>
-            <input name="direccion" placeholder="Dirección" [(ngModel)]="user.address" type="text">
+            <input name="address" #address="ngModel" [(ngModel)]="user.address" placeholder="Dirección" required type="text">
           </div>
-          <div class="field">
+          <div class="field required" [class.error]="!cp.valid && cp.touched">
             <label>Código postal</label>
-            <input name="codigo_postal" placeholder="Código postal" [(ngModel)]="user.cp" type="text">
+            <input name="cp" #cp="ngModel" [(ngModel)]="user.cp" placeholder="Código postal" required maxlength="5" type="text">
           </div>
-          <div class="field">
+          <div class="field required" [class.error]="!password.valid && password.touched">
             <label>Contraseña</label>
-            <input name="contrasenya" placeholder="Contraseña" [(ngModel)]="user.password" type="password">
+            <input name="password" #password="ngModel" [(ngModel)]="user.password" placeholder="Contraseña" required minlength="4" type="password">
           </div>
-          <div class="field">
+          <div class="field required" [class.error]="!passwordRepeat.valid && passwordRepeat.touched">
             <label>Repetir contraseña</label>
-            <input name="repetir_contrasenya" placeholder="Repetir contraseña" [(ngModel)]="user.paswordRepeat" type="password">
+            <input name="passwordRepeat" #passwordRepeat="ngModel" [(ngModel)]="user.passwordRepeat" placeholder="Repetir contraseña"
+              required validateEqual="password" type="password">
+            <small [hidden]="passwordRepeat.valid || !passwordRepeat.touched">
+              Las contraseñas no coinciden
+            </small>
           </div>
-          <input type="submit" class="ui fluid large blue button" value="Enviar" />
+          <input type="submit" [disabled]="!registerForm.form.valid" class="ui fluid large blue button" value="Enviar" />
         </div>
       </form>
     </div>
