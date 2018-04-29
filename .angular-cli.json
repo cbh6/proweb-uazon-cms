@@ -15,7 +15,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": ["../semantic/dist/semantic.min.css", "index.scss"],
+      "styles": ["../semantic/dist/semantic.min.css", "../node_modules/ngx-toastr/toastr.css", "index.scss"],
       "scripts": ["../node_modules/jquery/dist/jquery.js", "../semantic/dist/semantic.min.js"],
       "environmentSource": "environments/environment.ts",
       "environments": {
