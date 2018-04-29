@@ -1,3 +1,13 @@
-<p>
-  books-detail works!
-</p>
+<div class="ui raised container">
+  <h1 class="ui header">libro
+    <uaz-back-button></uaz-back-button>
+  </h1>
+  <div class="ui blue segment">
+    <form class="ui form">
+      <div class="field">
+        <label>Título</label>
+        <input name="titulo" [(ngModel)]="book.titulo" required placeholder="Título" type="text">
+      </div>
+    </form>
+  </div>
+</div>

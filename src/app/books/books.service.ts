@@ -20,4 +20,10 @@ export class BooksService {
     // return this.http.get(this.url + '/libros', { headers });
     return this._apiService.Get('libros', token);
   }
+
+  detail(token, id): Observable<any> {
+    // const headers = new HttpHeaders().set('Authorization', token);
+    // return this.http.get(this.url + '/libros', { headers });
+    return this._apiService.Get(`libros/${id}`, token);
+  }
 }
