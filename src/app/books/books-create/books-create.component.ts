@@ -12,8 +12,6 @@ import { Book } from '../../shared/models/book.model';
 })
 export class BooksCreateComponent implements OnInit {
   public book: Book;
-  public status: string;
-  public message: string;
 
   constructor(
     private _toastr: ToastrService,
@@ -32,8 +30,6 @@ export class BooksCreateComponent implements OnInit {
     this.book.isbn = parseInt(this.book.isbn.toString().replace(/\-/g, ''), 10);
     this._booksService.create(this._authService.getToken(), this.book).subscribe(
       response => {
-        this.status = response.status;
-        this.message = response.message;
         this._toastr.success('Libro creado correctamente');
         this._router.navigate(['books']);
       },

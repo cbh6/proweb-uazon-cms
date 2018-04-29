@@ -31,4 +31,8 @@ export class BooksService {
     // return this.http.get(this.url + '/libros', { headers });
     return this._apiService.Get(`libros/${id}`, token);
   }
+
+  delete(token, id): Observable<any> {
+    return this._apiService.Delete(`libros/${id}`, token);
+  }
 }

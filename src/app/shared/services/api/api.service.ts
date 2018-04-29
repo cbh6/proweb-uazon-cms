@@ -84,12 +84,20 @@ export class ApiService {
   /**
    * DELETE request
    * @param {string} endPoint end point of the api
-   * @param {IRequestOptions} options options of the request like headers, body, etc.
+   * @param {string} token optional auth token
    * @returns {Observable}
    */
-  public Delete(endPoint: string): Observable<any> {
+  public Delete(endPoint: string, token?: string): Observable<any> {
     const apiUrl = ApiService.buildUrl(endPoint);
-    const options = {};
+
+    const options: any = {};
+    const headers = { 'Content-Type': 'application/x-www-form-urlencoded' };
+
+    if (token) {
+      headers['Authorization'] = token;
+    }
+
+    options.headers = new HttpHeaders(headers);
     return this.http.delete(apiUrl, options);
   }
 }
