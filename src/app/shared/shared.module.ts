@@ -5,14 +5,22 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule, HttpClient } from '@angular/common/http'; // replaces previous Http service
 import { HttpModule } from '@angular/http';
+
+// External modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgxSmartModalModule } from 'ngx-smart-modal';
+
+// Services
 import { AuthService } from './services/api/auth.service';
 import { AuthGuardService } from './services/auth-guard.service';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { ApiService, apiServiceCreator } from './services/api/api.service';
+
+// Shared components
+import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { BackButtonComponent } from './components/back-button/back-button.component';
 
+// Directives
 import { EqualValidator } from './directives/equal-validator.directive';
 import { IsbnValidator } from './directives/isbn-validator.directive';
 
@@ -28,7 +36,7 @@ const SHARED_MODULES = [
 
 const SHARED_DIRECTIVES = [EqualValidator, IsbnValidator];
 @NgModule({
-  imports: [...SHARED_MODULES, ToastrModule.forRoot()],
+  imports: [...SHARED_MODULES, ToastrModule.forRoot(), NgxSmartModalModule.forRoot()],
   providers: [
     AuthService,
     AuthGuardService,

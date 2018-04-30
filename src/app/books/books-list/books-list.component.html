@@ -1,4 +1,10 @@
 <div *ngIf="!books" class="ui active centered inline loader"></div>
+<ngx-smart-modal #myModal identifier="myModal">
+  <h1>Title</h1>
+  <p>Some stuff...</p>
+
+  <button (click)="myModal.close()">Close</button>
+</ngx-smart-modal>
 <table class="ui blue selectable table" *ngIf="books">
   <thead>
     <tr>
@@ -22,7 +28,7 @@
         </a>
       </td>
       <td>
-        <a class="circular ui basic red icon button" (click)="onDelete(book.id)">
+        <a class="circular ui basic red icon button" (click)="ngxSmartModalService.getModal('myModal').open()">
           <i class="trash icon"></i>
         </a>
       </td>

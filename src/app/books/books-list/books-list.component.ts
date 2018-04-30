@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { NgxSmartModalService } from 'ngx-smart-modal';
 import { BooksService } from '../books.service';
 import { AuthService } from '../../shared/services/api/auth.service';
 import { Book } from '../../shared/models/book.model';
@@ -17,7 +18,8 @@ export class BooksListComponent implements OnInit {
     private _router: Router,
     private _booksService: BooksService,
     private _authService: AuthService,
-    private _toastr: ToastrService
+    private _toastr: ToastrService,
+    public ngxSmartModalService: NgxSmartModalService
   ) {}
 
   ngOnInit() {
