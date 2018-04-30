@@ -9,7 +9,6 @@ import { HttpModule } from '@angular/http';
 // External modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { NgxSmartModalModule } from 'ngx-smart-modal';
 
 // Services
 import { AuthService } from './services/api/auth.service';
@@ -36,7 +35,7 @@ const SHARED_MODULES = [
 
 const SHARED_DIRECTIVES = [EqualValidator, IsbnValidator];
 @NgModule({
-  imports: [...SHARED_MODULES, ToastrModule.forRoot(), NgxSmartModalModule.forRoot()],
+  imports: [...SHARED_MODULES, ToastrModule.forRoot()],
   providers: [
     AuthService,
     AuthGuardService,

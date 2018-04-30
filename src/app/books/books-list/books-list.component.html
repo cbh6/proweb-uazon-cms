@@ -1,10 +1,14 @@
 <div *ngIf="!books" class="ui active centered inline loader"></div>
-<ngx-smart-modal #myModal identifier="myModal">
-  <h1>Title</h1>
-  <p>Some stuff...</p>
-
-  <button (click)="myModal.close()">Close</button>
-</ngx-smart-modal>
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="content">
+    <p>El libro
+      <strong>{{ context.data.titulo }}</strong> va a ser eliminado, ¿estás seguro?</p>
+  </div>
+  <div class="actions">
+    <button class="ui blue button" (click)="modal.deny()">Cancelar</button>
+    <button class="ui red button" (click)="modal.approve()" autofocus>Borrar</button>
+  </div>
+</ng-template>
 <table class="ui blue selectable table" *ngIf="books">
   <thead>
     <tr>
@@ -28,7 +32,7 @@
         </a>
       </td>
       <td>
-        <a class="circular ui basic red icon button" (click)="ngxSmartModalService.getModal('myModal').open()">
+        <a class="circular ui basic red icon button" (click)="openModal(book)">
           <i class="trash icon"></i>
         </a>
       </td>

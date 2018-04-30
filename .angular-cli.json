@@ -16,12 +16,11 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "../semantic/dist/semantic.min.css",
         "../node_modules/ngx-toastr/toastr.css",
         "../node_modules/ngx-smart-modal/ngx-smart-modal.css",
         "index.scss"
       ],
-      "scripts": ["../node_modules/jquery/dist/jquery.js", "../semantic/dist/semantic.min.js"],
+      "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
