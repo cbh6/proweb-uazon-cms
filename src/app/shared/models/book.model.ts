@@ -1,5 +1,8 @@
-export class Book {
-  id: number;
+import { Author } from './author.model';
+import { Resource } from './resource';
+
+export class Book extends Resource {
+  // id: number;
   isbn: number;
   voto: number;
   num_voto: number;
@@ -9,7 +12,10 @@ export class Book {
   editorial: string;
   atributos_extra: object;
 
+  authors: Author[];
+
   constructor(obj: object) {
+    super();
     Object.assign(this, obj);
   }
 
@@ -22,8 +28,9 @@ export class Book {
     this.titulo = '';
     this.editorial = '';
     this.atributos_extra = {};
+    this.authors = [];
   }
-  isCheap() {
-    // return this.price < 100;
+  cheap() {
+    return 'cheap';
   }
 }

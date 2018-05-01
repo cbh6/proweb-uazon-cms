@@ -3,9 +3,10 @@ import { ToastrService } from 'ngx-toastr';
 import { BooksService } from '../books.service';
 import { AuthService } from '../../shared/services/api/auth.service';
 import { Book } from '../../shared/models/book.model';
+import { Author } from '../../shared/models/author.model';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
 import { SuiModalService, TemplateModalConfig, ModalTemplate } from 'ng2-semantic-ui';
-
 export interface IContext {
   data: object;
 }
@@ -24,16 +25,24 @@ export class BooksListComponent implements OnInit {
     private _authService: AuthService,
     private _toastr: ToastrService,
     public modalService: SuiModalService
-  ) {}
+  ) {
+    this.books = [];
+  }
 
   ngOnInit() {
     this.getBooks();
   }
 
   getBooks() {
+    this.books = [];
     this._booksService.list(this._authService.getToken()).subscribe(
       response => {
-        this.books = response.data;
+        response.data.forEach(book => {
+          this._booksService.getAutoresFromLibro(this._authService.getToken(), book.id).subscribe(resAuthors => {
+            book.authors = resAuthors.data;
+            this.books.push(book);
+          });
+        });
       },
       error => {
         console.log(error as any);
