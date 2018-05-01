@@ -30,9 +30,10 @@ export class BooksDetailComponent implements OnInit {
     this.editing = false;
     this.loading = true;
 
+    // Get book id from url and then fetch book data using apiService
     this._route.params
       .flatMap((v: any, index: number) => {
-        return this._booksService.detail(this._authService.getToken(), v.id);
+        return this._booksService.read(this._authService.getToken(), v.id);
       })
       .subscribe(response => {
         this.book = response.data;
@@ -46,7 +47,7 @@ export class BooksDetailComponent implements OnInit {
 
   onSubmit(form) {
     this.book.isbn = parseInt(this.book.isbn.toString().replace(/\-/g, ''), 10);
-    this._booksService.edit(this._authService.getToken(), this.book).subscribe(
+    this._booksService.update(this._authService.getToken(), this.book).subscribe(
       response => {
         this._toastr.success('Libro modificado correctamente');
       },
