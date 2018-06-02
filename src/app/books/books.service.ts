@@ -41,4 +41,8 @@ export class BooksService extends ResourceService<Book> {
   getAutoresFromLibro(token, id): Observable<any> {
     return this._apiService.Get(`libros/${id}/autores`, token);
   }
+
+  getAutores(token): Observable<any> {
+    return this._apiService.Get(`autores`, token);
+  }
 }

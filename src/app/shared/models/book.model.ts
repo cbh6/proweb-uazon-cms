@@ -11,8 +11,7 @@ export class Book extends Resource {
   titulo: string;
   editorial: string;
   atributos_extra: object;
-
-  authors: Author[];
+  autores: Author[];
 
   constructor(obj: object) {
     super();
@@ -28,7 +27,7 @@ export class Book extends Resource {
     this.titulo = '';
     this.editorial = '';
     this.atributos_extra = {};
-    this.authors = [];
+    this.autores = [];
   }
   cheap() {
     return 'cheap';

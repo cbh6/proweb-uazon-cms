@@ -37,12 +37,7 @@ export class BooksListComponent implements OnInit {
     this.books = [];
     this._booksService.list(this._authService.getToken()).subscribe(
       response => {
-        response.data.forEach(book => {
-          this._booksService.getAutoresFromLibro(this._authService.getToken(), book.id).subscribe(resAuthors => {
-            book.authors = resAuthors.data;
-            this.books.push(book);
-          });
-        });
+        this.books = response.data;
       },
       error => {
         console.log(error as any);

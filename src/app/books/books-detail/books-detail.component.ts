@@ -6,6 +6,7 @@ import 'rxjs/add/operator/mergeMap';
 import { BooksService } from '../books.service';
 import { AuthService } from '../../shared/services/api/auth.service';
 import { Book } from '../../shared/models/book.model';
+import { Author } from '../../shared/models/author.model';
 
 @Component({
   selector: 'uaz-books-detail',
@@ -14,8 +15,11 @@ import { Book } from '../../shared/models/book.model';
 })
 export class BooksDetailComponent implements OnInit {
   public book: Book;
+  public autores: Author[];
   public editing: boolean;
   public loading: boolean;
+  public options: string[];
+  public selectedOption: string;
 
   constructor(
     private _toastr: ToastrService,
@@ -29,7 +33,14 @@ export class BooksDetailComponent implements OnInit {
     this.book = new Book({});
     this.editing = false;
     this.loading = true;
+    this.options = [];
+    this.selectedOption = '';
 
+    this.getBookData();
+    this.getAuthors();
+  }
+
+  getBookData() {
     // Get book id from url and then fetch book data using apiService
     this._route.params
       .flatMap((v: any, index: number) => {
@@ -39,6 +50,16 @@ export class BooksDetailComponent implements OnInit {
         this.book = response.data;
         this.loading = false;
       });
+  }
+
+  getAuthors() {
+    // Get book id from url and then fetch book data using apiService
+    this._booksService.getAutores(this._authService.getToken()).subscribe(response => {
+      this.autores = response.data;
+      response.data.forEach(autor => {
+        this.options.push(autor.nombre);
+      });
+    });
   }
 
   toggleEdit() {

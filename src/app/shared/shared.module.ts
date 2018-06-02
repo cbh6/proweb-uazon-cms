@@ -9,6 +9,7 @@ import { HttpModule } from '@angular/http';
 // External modules
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { SuiModule } from 'ng2-semantic-ui';
 
 // Services
 import { AuthService } from './services/api/auth.service';
@@ -30,7 +31,8 @@ const SHARED_MODULES = [
   CommonModule,
   HttpClientModule,
   HttpModule,
-  BrowserAnimationsModule
+  BrowserAnimationsModule,
+  SuiModule
 ];
 
 const SHARED_DIRECTIVES = [EqualValidator, IsbnValidator];

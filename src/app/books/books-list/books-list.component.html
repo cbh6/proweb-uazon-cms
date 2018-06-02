@@ -24,10 +24,10 @@
     <tr *ngFor="let book of books">
       <td>{{book.titulo}}</td>
       <td>{{book.editorial}}</td>
-      <td [ngSwitch]="book.authors.length">
+      <td [ngSwitch]="book.autores.length">
         <p *ngSwitchCase="0">-</p>
-        <p *ngSwitchCase="1">{{ book.authors[0].nombre }}</p>
-        <p *ngSwitchDefault>{{ book.authors[0].nombre }} ...</p>
+        <p *ngSwitchCase="1">{{ book.autores[0].nombre }}</p>
+        <p *ngSwitchDefault>{{ book.autores[0].nombre }} ...</p>
       </td>
       <td>{{book.n_pags}}</td>
       <td>{{book.precio}}</td>

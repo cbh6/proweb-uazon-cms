@@ -15,11 +15,7 @@
       "tsconfig": "tsconfig.app.json",
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
-      "styles": [
-        "../node_modules/ngx-toastr/toastr.css",
-        "../node_modules/ngx-smart-modal/ngx-smart-modal.css",
-        "index.scss"
-      ],
+      "styles": ["../node_modules/ngx-toastr/toastr.css", "index.scss"],
       "scripts": [],
       "environmentSource": "environments/environment.ts",
       "environments": {
