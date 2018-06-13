@@ -1,3 +1,33 @@
-<p>
-  authors-list works!
-</p>
+<div *ngIf="!books" class="ui active centered inline loader"></div>
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="content">
+    <p>El autor
+      <strong>{{ context.data.nombre }}</strong> va a ser eliminado, ¿estás seguro?</p>
+  </div>
+  <div class="actions">
+    <button class="ui blue button" (click)="modal.deny()">Cancelar</button>
+    <button class="ui red button" (click)="modal.approve()" autofocus>Borrar</button>
+  </div>
+</ng-template>
+<table class="ui blue selectable table" *ngIf="authors">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let author of authors">
+      <td>{{author.nombre}}</td>
+      <td>
+        <a class="circular ui basic blue icon button" [routerLink]="['./', author.id]">
+          <i class="pencil alternate icon"></i>
+        </a>
+      </td>
+      <td>
+        <a class="circular ui basic red icon button" (click)="openModal(author)">
+          <i class="trash icon"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>
