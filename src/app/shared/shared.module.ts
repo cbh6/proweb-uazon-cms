@@ -36,6 +36,7 @@ const SHARED_MODULES = [
 ];
 
 const SHARED_DIRECTIVES = [EqualValidator, IsbnValidator];
+
 @NgModule({
   imports: [...SHARED_MODULES, ToastrModule.forRoot()],
   providers: [
