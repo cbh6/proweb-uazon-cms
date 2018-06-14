@@ -26,7 +26,7 @@ export class BooksCreateComponent implements OnInit {
     this.book.init();
   }
 
-  onSubmit(form) {
+  onSubmit() {
     this.book.isbn = parseInt(this.book.isbn.toString().replace(/\-/g, ''), 10);
     this._booksService.create(this._authService.getToken(), this.book).subscribe(
       response => {

@@ -7,7 +7,7 @@
     <uaz-back-button></uaz-back-button>
   </h1>
   <div class="ui blue segment">
-    <form #newBook="ngForm" (ngSubmit)="onSubmit(newBook)" class="ui form">
+    <form #newBook="ngForm" (ngSubmit)="onSubmit()" class="ui form">
       <div class="field required" [class.error]="!titulo.valid && titulo.touched">
         <label>Título</label>
         <input name="titulo" #titulo="ngModel" [(ngModel)]="book.titulo" required placeholder="Título" type="text">
