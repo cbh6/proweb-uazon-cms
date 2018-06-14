@@ -1,3 +1,18 @@
-<p>
-  authors-create works!
-</p>
+<div class="ui raised container">
+  <h1 class="ui header">
+    <i class="icons">
+      <i class="bulb icon"></i>
+      <i class="corner plus icon"></i>
+    </i>Nuevo Autor
+    <uaz-back-button></uaz-back-button>
+  </h1>
+  <div class="ui blue segment">
+    <form #newBook="ngForm" (ngSubmit)="onSubmit(newAuthor)" class="ui form">
+      <div class="field required" [class.error]="!nombre.valid && nombre.touched">
+        <label>Nombre</label>
+        <input name="nombre" #nombre="ngModel" [(ngModel)]="author.nombre" required placeholder="Nombre" type="text">
+      </div>
+      <button class="ui button blue" type="submit" [disabled]="!newAuthor.form.valid">Guardar</button>
+    </form>
+  </div>
+</div>
