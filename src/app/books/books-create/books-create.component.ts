@@ -34,7 +34,7 @@ export class BooksCreateComponent implements OnInit {
         this._router.navigate(['books']);
       },
       error => {
-        this._toastr.error('Se ha producido un error inesperado al modificar el libro');
+        this._toastr.error('Se ha producido un error inesperado al crear el libro');
         console.log(error as any);
       }
     );

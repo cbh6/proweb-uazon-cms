@@ -2,7 +2,6 @@ import { Author } from './author.model';
 import { Resource } from './resource';
 
 export class Book extends Resource {
-  // id: number;
   isbn: number;
   voto: number;
   num_voto: number;
@@ -28,8 +27,5 @@ export class Book extends Resource {
     this.editorial = '';
     this.atributos_extra = {};
     this.autores = [];
-  }
-  cheap() {
-    return 'cheap';
   }
 }
