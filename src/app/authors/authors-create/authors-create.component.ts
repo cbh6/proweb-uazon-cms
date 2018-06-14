@@ -23,7 +23,7 @@ export class AuthorsCreateComponent implements OnInit {
     this.author.init();
   }
 
-  onSubmit(form) {
+  onSubmit() {
     this._athorsService.create(this._authService.getToken(), this.author).subscribe(
       response => {
         this._toastr.success('Autor creado correctamente');

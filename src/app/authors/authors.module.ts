@@ -4,8 +4,6 @@ import { AuthorsService } from './authors.service';
 import { AuthorsComponent } from './authors.component';
 import { AuthorsListComponent } from './authors-list/authors-list.component';
 import { AuthorsCreateComponent } from './authors-create/authors-create.component';
-// import { authorsCreateComponent } from './authors-create/authors-create.component';
-// import { authorsDetailComponent } from './authors-detail/authors-detail.component';
 
 @NgModule({
   imports: [SharedModule],
