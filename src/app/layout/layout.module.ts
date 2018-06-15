@@ -6,6 +6,7 @@ import { AuthentificationModule } from '../authentification/authentification.mod
 import { DashboardModule } from '../dashboard/dashboard.module';
 import { BooksModule } from '../books/books.module';
 import { AuthorsModule } from '../authors/authors.module';
+import { CommentsModule } from '../comments/comments.module';
 import { SharedModule } from '../shared/shared.module';
 
 // Components
@@ -14,7 +15,7 @@ import { HeaderComponent } from './header/header.component';
 import { ContainerComponent } from './container/container.component';
 
 @NgModule({
-  imports: [SharedModule, routing, AuthentificationModule, DashboardModule, BooksModule, AuthorsModule],
+  imports: [SharedModule, routing, AuthentificationModule, DashboardModule, BooksModule, AuthorsModule, CommentsModule],
   declarations: [HeaderComponent, MenuComponent, ContainerComponent],
   exports: [HeaderComponent, ContainerComponent],
   providers: [appRoutingProviders]

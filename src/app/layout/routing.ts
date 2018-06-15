@@ -11,6 +11,7 @@ import { BooksDetailComponent } from '../books/books-detail/books-detail.compone
 import { BooksCreateComponent } from '../books/books-create/books-create.component';
 import { AuthorsComponent } from '../authors/authors.component';
 import { AuthorsCreateComponent } from '../authors/authors-create/authors-create.component';
+import { CommentsComponent } from '../comments/comments.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
@@ -24,6 +25,7 @@ const appRoutes: Routes = [
   { path: 'books-new', component: BooksCreateComponent, canActivate: [AuthGuard] },
   { path: 'authors', component: AuthorsComponent, canActivate: [AuthGuard] },
   { path: 'authors-new', component: AuthorsCreateComponent, canActivate: [AuthGuard] },
+  { path: 'comments', component: CommentsComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent, canActivate: [AuthGuard] }
 ];
 
