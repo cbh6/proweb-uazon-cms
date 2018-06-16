@@ -38,6 +38,7 @@ export class CommentsListComponent implements OnInit {
     this._commentsService.list(this._authService.getToken()).subscribe(
       response => {
         this.comments = response.data;
+        console.log(this.comments);
       },
       error => {
         console.log(error as any);

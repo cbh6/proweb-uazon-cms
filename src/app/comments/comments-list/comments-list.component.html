@@ -12,7 +12,7 @@
   </div>
 </ng-template>
 
-<table class="ui blue selectable table" *ngIf="authors">
+<table class="ui blue selectable table" *ngIf="comments">
   <thead>
     <tr>
       <th>Usuario</th>
@@ -21,7 +21,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let author of authors">
+    <tr *ngFor="let comment of comments">
       <td>{{comment.autor}}</td>
       <td>{{comment.descripcion}}</td>
       <td>{{comment.libro.nombre}}</td>
