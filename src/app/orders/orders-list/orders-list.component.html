@@ -1,0 +1,37 @@
+<div *ngIf="!orders" class="ui active centered inline loader"></div>
+
+<!-- delete orders modal -->
+<ng-template let-context let-modal="modal" #modalTemplate>
+  <div class="content">
+    <p>El pedido
+      <strong>{{ context.data.id }}</strong> va a ser eliminado, ¿estás seguro?</p>
+  </div>
+  <div class="actions">
+    <button class="ui blue button" (click)="modal.deny()">Cancelar</button>
+    <button class="ui red button" (click)="modal.approve()" autofocus>Borrar</button>
+  </div>
+</ng-template>
+
+<table class="ui blue selectable table" *ngIf="orders">
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>fecha</th>
+      <th>total</th>
+      <th colspan="2">pagado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let order of orders">
+      <!-- <td>{{author.nombre}}</td> -->
+      <td class="icons-cell">
+        <a class="circular ui basic blue icon button" [routerLink]="['./', order.id]">
+          <i class="pencil alternate icon"></i>
+        </a>
+        <a class="circular ui basic red icon button" (click)="openModal(order)">
+          <i class="trash icon"></i>
+        </a>
+      </td>
+    </tr>
+  </tbody>
+</table>

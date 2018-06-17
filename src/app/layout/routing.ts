@@ -12,6 +12,8 @@ import { BooksCreateComponent } from '../books/books-create/books-create.compone
 import { AuthorsComponent } from '../authors/authors.component';
 import { AuthorsCreateComponent } from '../authors/authors-create/authors-create.component';
 import { CommentsComponent } from '../comments/comments.component';
+import { OrdersComponent } from '../orders/orders.component';
+import { OrdersDetailComponent } from '../orders/orders-detail/orders-detail.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
@@ -26,6 +28,8 @@ const appRoutes: Routes = [
   { path: 'authors', component: AuthorsComponent, canActivate: [AuthGuard] },
   { path: 'authors-new', component: AuthorsCreateComponent, canActivate: [AuthGuard] },
   { path: 'comments', component: CommentsComponent, canActivate: [AuthGuard] },
+  { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
+  { path: 'orders/:id', component: OrdersDetailComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent, canActivate: [AuthGuard] }
 ];
 
