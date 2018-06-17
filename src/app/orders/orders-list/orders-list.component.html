@@ -16,17 +16,25 @@
   <thead>
     <tr>
       <th>id</th>
-      <th>fecha</th>
-      <th>total</th>
-      <th colspan="2">pagado</th>
+      <th>Fecha</th>
+      <th>Total</th>
+      <th colspan="3">Pagado</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let order of orders">
       <!-- <td>{{author.nombre}}</td> -->
+      <td>{{order.id}}</td>
+      <td>{{order.fecha | date:'dd-MM-yyyy'}}</td>
+      <td>{{order.total}}</td>
+      <td [ngSwitch]="order.pagado">
+        <p *ngSwitchCase="0">No</p>
+        <p *ngSwitchCase="1">Sí</p>
+        <p *ngSwitchDefault>N/A</p>
+      </td>
       <td class="icons-cell">
         <a class="circular ui basic blue icon button" [routerLink]="['./', order.id]">
-          <i class="pencil alternate icon"></i>
+          <i class="eye icon"></i>
         </a>
         <a class="circular ui basic red icon button" (click)="openModal(order)">
           <i class="trash icon"></i>
