@@ -1,3 +1,46 @@
-<p>
-  orders-detail works!
-</p>
+<div class="ui raised container">
+  <h1 class="ui header">
+    <i class="icons">
+      <i class="shopping cart icon"></i>
+      <i class="corner pencil icon"></i>
+    </i> Detalle de pedido
+    <uaz-back-button></uaz-back-button>
+  </h1>
+
+  <div class="ui blue segment" [class.loading]="loading">
+    <div>
+      <h5>Usuario</h5>
+      <p>{{order.user.name}}</p>
+      <br>
+
+      <!-- product list -->
+      <table class="ui striped table blue" *ngIf="order.libros">
+        <thead>
+          <tr>
+            <th>Título</th>
+            <th>Editorial</th>
+            <th>ISBN</th>
+            <th>Precio</th>
+            <th>Cantidad</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let libro from order.libros">
+            <td>{{libro.titulo}}</td>
+            <td>{{libro.editorial}}</td>
+            <td>{{libro.isbn}}</td>
+            <td>{{libro.precio}}</td>
+            <td>{{libro.cantidad}}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <th>Total {{order.total}}</th>
+          </tr>
+        </tfoot>
+      </table>
+
+      C
+    </div>
+  </div>
+</div>

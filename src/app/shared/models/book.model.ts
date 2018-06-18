@@ -10,6 +10,7 @@ export class Book extends Resource {
   titulo: string;
   editorial: string;
   atributos_extra: object;
+  cantidad: number;
   autores: Author[];
 
   constructor(obj: object) {

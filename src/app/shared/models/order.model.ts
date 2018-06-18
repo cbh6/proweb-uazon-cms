@@ -1,4 +1,5 @@
 import { Book } from './book.model';
+import { User } from './user.model';
 import { Resource } from './resource';
 
 export class Order extends Resource {
@@ -6,6 +7,7 @@ export class Order extends Resource {
   fecha: string;
   pagado: boolean;
   libros: Book[];
+  user: User;
 
   constructor(obj: object) {
     super();
@@ -17,5 +19,12 @@ export class Order extends Resource {
     this.fecha = '';
     this.pagado = null;
     this.libros = [];
+    this.users = null;
+  }
+
+  getCountProductos() {
+    return this.libros.reduce((pl, al) => {
+      return pl + al.cantidad;
+    }, 0);
   }
 }
