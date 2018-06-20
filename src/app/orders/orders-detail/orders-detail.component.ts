@@ -35,6 +35,7 @@ export class OrdersDetailComponent implements OnInit {
       })
       .subscribe(response => {
         this.order = response.data;
+        console.log(this.order);
         this.loading = false;
       });
   }

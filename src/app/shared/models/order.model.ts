@@ -19,7 +19,7 @@ export class Order extends Resource {
     this.fecha = '';
     this.pagado = null;
     this.libros = [];
-    this.users = null;
+    this.user = null;
   }
 
   getCountProductos() {
