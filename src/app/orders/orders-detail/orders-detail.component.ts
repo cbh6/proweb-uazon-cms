@@ -34,8 +34,7 @@ export class OrdersDetailComponent implements OnInit {
         return this._ordersService.read(this._authService.getToken(), v.id);
       })
       .subscribe(response => {
-        this.order = response.data;
-        console.log(this.order);
+        this.order = new Order(response.data);
         this.loading = false;
       });
   }

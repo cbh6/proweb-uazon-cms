@@ -38,7 +38,7 @@ export class OrdersListComponent implements OnInit {
     this.orders = [];
     this._ordersService.list(this._authService.getToken()).subscribe(
       response => {
-        this.orders = response.data;
+        this.orders = response.data.map(orderData => new Order(orderData));
       },
       error => {
         console.log(error as any);

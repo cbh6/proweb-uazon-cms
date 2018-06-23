@@ -8,34 +8,49 @@
   </h1>
 
   <div class="ui blue segment" [class.loading]="loading">
-    <div>
-      <h5>Usuario</h5>
-      <p>{{order.user.name}}</p>
+    <div *ngIf="order.usuario">
+      <h3>Usuario</h3>
+      <p>
+        <strong>Nombre:</strong> {{order.usuario.name}}
+      </p>
+      <p>
+        <strong>Email:</strong> {{order.usuario.email}}
+      </p>
       <br>
-
-      <!-- product list -->
-      <table class="ui striped table blue" *ngIf="order.libros">
+    </div>
+    <div class="ui divider"></div>    
+    <!-- product list -->
+    <div>
+      <p>
+        <strong>Pagado:</strong> {{order.pagado}}
+      </p>
+      <p>
+        <strong>Fecha:</strong> {{order.fecha | date:'dd-MM-yyyy'}}
+      </p>
+      <h3>Lista de productos</h3>
+      <table class="ui striped table black" *ngIf="order.libros">
         <thead>
           <tr>
             <th>Título</th>
             <th>Editorial</th>
             <th>ISBN</th>
             <th>Precio</th>
-            <th>Cantidad</th>
+            <th class="center aligned">Cantidad</th>
           </tr>
         </thead>
-        <!-- <tbody>
-          <tr *ngFor="let libro from order.libros">
+        <tbody>
+          <tr *ngFor="let libro of order.libros">
             <td>{{libro.titulo}}</td>
             <td>{{libro.editorial}}</td>
             <td>{{libro.isbn}}</td>
-            <td>{{libro.precio}}</td>
-            <td>{{libro.cantidad}}</td>
+            <td>{{libro.precio}} €</td>
+            <td class="center aligned">{{libro.cantidad}}</td>
           </tr>
-        </tbody> -->
+        </tbody>
         <tfoot>
           <tr>
-            <th>Total {{order.total}}</th>
+            <th colspan="5">
+              <strong>Total</strong>: {{order.total}} €</th>
           </tr>
         </tfoot>
       </table>

@@ -7,7 +7,7 @@ export class Order extends Resource {
   fecha: string;
   pagado: boolean;
   libros: Book[];
-  user: User;
+  usuario: User;
 
   constructor(obj: object) {
     super();
@@ -19,7 +19,7 @@ export class Order extends Resource {
     this.fecha = '';
     this.pagado = null;
     this.libros = [];
-    this.user = null;
+    this.usuario = null;
   }
 
   getCountProductos() {

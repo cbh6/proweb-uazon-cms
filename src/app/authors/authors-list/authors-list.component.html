@@ -21,10 +21,7 @@
   <tbody>
     <tr *ngFor="let author of authors">
       <td>{{author.nombre}}</td>
-      <td class="icons-cell">
-        <a class="circular ui basic blue icon button" [routerLink]="['./', author.id]">
-          <i class="pencil alternate icon"></i>
-        </a>
+      <td>
         <a class="circular ui basic red icon button" (click)="openModal(author)">
           <i class="trash icon"></i>
         </a>
