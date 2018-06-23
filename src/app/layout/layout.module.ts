@@ -8,6 +8,7 @@ import { BooksModule } from '../books/books.module';
 import { AuthorsModule } from '../authors/authors.module';
 import { CommentsModule } from '../comments/comments.module';
 import { OrdersModule } from '../orders/orders.module';
+import { UsersModule } from '../users/users.module';
 import { SharedModule } from '../shared/shared.module';
 
 // Components
@@ -24,7 +25,8 @@ import { ContainerComponent } from './container/container.component';
     BooksModule,
     AuthorsModule,
     CommentsModule,
-    OrdersModule
+    OrdersModule,
+    UsersModule
   ],
   declarations: [HeaderComponent, MenuComponent, ContainerComponent],
   exports: [HeaderComponent, ContainerComponent],

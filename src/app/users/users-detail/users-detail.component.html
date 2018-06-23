@@ -1,0 +1,42 @@
+<div class="ui raised container">
+  <h1 class="ui header">
+    <i class="icons">
+      <i class="user icon"></i>
+      <i class="corner pencil icon"></i>
+    </i> Detalle de usuario
+    <uaz-back-button></uaz-back-button>
+    <button class="ui button right floated" [ngClass]="[editing  ? 'green' : 'gray']" (click)="toggleEdit()">Editar</button>
+  </h1>
+
+  <div class="ui blue segment">
+    <form #editUser="ngForm" [class.loading]="loading" (ngSubmit)="onSubmit(editUser)" class="ui form">
+      <div class="field required" [class.error]="!name.valid && name.touched">
+        <label>Nombre</label>
+        <input name="name" #name="ngModel" [(ngModel)]="user.name" [disabled]="!editing" required placeholder="Nombre" type="text">
+      </div>
+      <div class="field required" [class.error]="email.invalid && email.touched">
+        <label>Email</label>
+        <input name="email" #email="ngModel" [disabled]="!editing" [(ngModel)]="user.email" placeholder="Email" required email type="email">
+        <small [hidden]="email.valid || !email.touched">
+          Formato de email inválido
+        </small>
+      </div>
+      <div class="field required">
+        <label>Rol</label>
+        <select name="role" (ngModelChange)="selectChange($event)" >
+            <option *ngFor="let role of roles" [selected]="role.value === user.role" [ngValue]="role.id">{{role.text}}</option>
+          </select>
+      </div>
+      <div class="field required" [class.error]="!address.valid && address.touched">
+        <label>Dirección</label>
+        <input name="address" #address="ngModel" [(ngModel)]="user.address" [disabled]="!editing" required placeholder="Dirección"
+          type="text">
+      </div>
+      <div class="field required" [class.error]="!cp.valid && cp.touched">
+        <label>Código Postal</label>
+        <input name="cp" #cp="ngModel" [(ngModel)]="user.cp" [disabled]="!editing" required placeholder="cp" type="text">
+      </div>
+      <button class="ui button blue" type="submit" [disabled]="!editUser.form.valid || !editing">Guardar</button>
+    </form>
+  </div>
+</div>

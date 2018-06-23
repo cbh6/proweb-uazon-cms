@@ -14,6 +14,8 @@ import { AuthorsCreateComponent } from '../authors/authors-create/authors-create
 import { CommentsComponent } from '../comments/comments.component';
 import { OrdersComponent } from '../orders/orders.component';
 import { OrdersDetailComponent } from '../orders/orders-detail/orders-detail.component';
+import { UsersComponent } from '../users/users.component';
+import { UsersDetailComponent } from '../users/users-detail/users-detail.component';
 import { PageNotFoundComponent } from '../shared/components/page-not-found/page-not-found.component';
 
 const appRoutes: Routes = [
@@ -30,6 +32,8 @@ const appRoutes: Routes = [
   { path: 'comments', component: CommentsComponent, canActivate: [AuthGuard] },
   { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard] },
   { path: 'orders/:id', component: OrdersDetailComponent, canActivate: [AuthGuard] },
+  { path: 'users', component: UsersComponent, canActivate: [AuthGuard] },
+  { path: 'users/:id', component: UsersDetailComponent, canActivate: [AuthGuard] },
   { path: '**', component: PageNotFoundComponent, canActivate: [AuthGuard] }
 ];
 
