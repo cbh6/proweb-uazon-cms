@@ -7,6 +7,12 @@ import { UsersService } from '../users.service';
 import { AuthService } from '../../shared/services/api/auth.service';
 import { User } from '../../shared/models/user.model';
 
+export interface IRole {
+  id: number;
+  value: string;
+  text: string;
+}
+
 @Component({
   selector: 'uaz-users-detail',
   templateUrl: './users-detail.component.html',
@@ -18,8 +24,7 @@ export class UsersDetailComponent implements OnInit {
   public loading: boolean;
   public options: string[];
   public selectedOption: string;
-  public roles: object[];
-  public eesee: object;
+  public roles: IRole[];
 
   constructor(
     private _toastr: ToastrService,
@@ -39,7 +44,6 @@ export class UsersDetailComponent implements OnInit {
     this.loading = true;
     this.options = [];
     this.selectedOption = '';
-    this.eesee = this.roles[0];
 
     this.getUserData();
   }
@@ -75,7 +79,7 @@ export class UsersDetailComponent implements OnInit {
   }
 
   selectChange($event) {
-    console.log($event);
-    // this.user.role = this.roles[$event].value;
+    const newRole = this.roles.find(role => (role.text = $event.target.value));
+    this.user.role = newRole.value;
   }
 }

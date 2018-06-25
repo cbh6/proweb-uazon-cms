@@ -1,4 +1,5 @@
 import { Author } from './author.model';
+import { Photo } from './photo.model';
 import { Resource } from './resource';
 
 export class Book extends Resource {
@@ -12,6 +13,7 @@ export class Book extends Resource {
   atributos_extra: object;
   cantidad: number;
   autores: Author[];
+  fotos: Photo[];
 
   constructor(obj: object) {
     super();
@@ -28,5 +30,6 @@ export class Book extends Resource {
     this.editorial = '';
     this.atributos_extra = {};
     this.autores = [];
+    this.fotos = [];
   }
 }

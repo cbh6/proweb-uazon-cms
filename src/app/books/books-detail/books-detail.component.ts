@@ -18,8 +18,11 @@ export class BooksDetailComponent implements OnInit {
   public autores: Author[];
   public editing: boolean;
   public loading: boolean;
-  public options: string[];
-  public selectedOption: string;
+  options = [];
+  dropdownList = [];
+  selectedItems = [];
+  dropdownSettings = {};
+  optionsY = [];
 
   constructor(
     private _toastr: ToastrService,
@@ -34,10 +37,14 @@ export class BooksDetailComponent implements OnInit {
     this.editing = false;
     this.loading = true;
     this.options = [];
-    this.selectedOption = '';
 
     this.getBookData();
     this.getAuthors();
+
+    console.log('options', this.options);
+
+    this.optionsY = [{ name: 'Test' }];
+    this.selectedItems = [{ item_id: 3, item_text: 'Pune' }, { item_id: 4, item_text: 'Navsari' }];
   }
 
   getBookData() {
@@ -47,7 +54,7 @@ export class BooksDetailComponent implements OnInit {
         return this._booksService.read(this._authService.getToken(), v.id);
       })
       .subscribe(response => {
-        this.book = response.data;
+        this.book = new Book(response.data);
         this.loading = false;
       });
   }
@@ -57,7 +64,8 @@ export class BooksDetailComponent implements OnInit {
     this._booksService.getAutores(this._authService.getToken()).subscribe(response => {
       this.autores = response.data;
       response.data.forEach(autor => {
-        this.options.push(autor.nombre);
+        this.options.push({ name: autor.nombre });
+        console.log(this.options);
       });
     });
   }

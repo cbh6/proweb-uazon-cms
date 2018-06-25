@@ -16,6 +16,7 @@
   <thead>
     <tr>
       <th>Usuario</th>
+      <th>Libro</th>
       <th>Descripción</th>
       <th colspan="2"></th>
     </tr>
@@ -23,6 +24,7 @@
   <tbody>
     <tr *ngFor="let comment of comments">
       <td>{{comment.autor}}</td>
+      <td>{{comment.libro.titulo}}</td>
       <td>{{comment.descripcion}}</td>
       <td>{{comment.libro.nombre}}</td>
       <td class="icons-cell">

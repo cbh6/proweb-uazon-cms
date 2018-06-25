@@ -37,7 +37,7 @@ export class CommentsListComponent implements OnInit {
     this.comments = [];
     this._commentsService.list(this._authService.getToken()).subscribe(
       response => {
-        this.comments = response.data;
+        this.comments = response.data.map(commentData => new Comment(commentData));
       },
       error => {
         console.log(error as any);

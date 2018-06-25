@@ -1,3 +1,56 @@
-<p>
-  dashboard works!
-</p>
+<div class="ui raised container">
+    <h2 class="ui header">
+        <i class="chart bar icon"></i>
+        <div class="content">
+          Uazon CMS
+          <div class="sub header">Manage your library</div>
+        </div>
+      </h2>
+  <div class="ui two cards">
+    <a class="blue card" [routerLink]="['/books']">
+      <div class="content">
+        <div class="header">
+          <i class="book icon"></i>Libros</div>
+        <div class="description">
+          Gestión de Libros
+        </div>
+      </div>
+    </a>
+    <a class="yellow card" [routerLink]="['/authors']">
+      <div class="content">
+        <div class="header">
+          <i class="lightbulb outline icon"></i>Autores</div>
+        <div class="description">
+          Gestión de Autores
+        </div>
+      </div>
+    </a>
+    <a class="green card" [routerLink]="['/users']">
+      <div class="content">
+        <div class="header">
+          <i class="user outline icon"></i>Usuarios</div>
+        <div class="description">
+          Gestión de Usuarios
+        </div>
+      </div>
+    </a>
+    <a class="teal card" [routerLink]="['/comments']">
+      <div class="content">
+        <div class="header">
+          <i class="comments icon"></i>Comentarios</div>
+        <div class="description">
+          Gestión de Comentarios
+        </div>
+      </div>
+    </a>
+    <a class="violet card" [routerLink]="['/orders']">
+      <div class="content">
+        <div class="header">
+          <i class="shopping cart icon"></i>Pedidos</div>
+        <div class="description">
+          Gestión de Pedidos
+        </div>
+      </div>
+    </a>
+  </div>
+</div>

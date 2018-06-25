@@ -9,7 +9,7 @@
   </h1>
 
   <div class="ui blue segment">
-     <form #editBook="ngForm" [class.loading]="loading" (ngSubmit)="onSubmit(editBook)" class="ui form">
+    <form #editBook="ngForm" [class.loading]="loading" (ngSubmit)="onSubmit(editBook)" class="ui form">
       <div class="field required" [class.error]="!titulo.valid && titulo.touched">
         <label>Título</label>
         <input name="titulo" #titulo="ngModel" [(ngModel)]="book.titulo" [disabled]="!editing" required placeholder="Título" type="text">
@@ -35,10 +35,12 @@
         <label>Número de páginas</label>
         <input name="n_pags" #numpags="ngModel" [(ngModel)]="book.n_pags" [disabled]="!editing" required placeholder="n_pags" type="number">
       </div>
-      <div class="field">
-      </div> 
-     atributos extra: listado para añadir o quitar elementos. Como un to-do list 
-     <button class="ui button blue" type="submit" [disabled]="!editBook.form.valid || !editing">Guardar</button>
-    </form> 
+      <sui-multi-select class="selection" [options]="options" labelField="name"
+         #multiSelect>
+        <sui-select-option *ngFor="let option of multiSelect.filteredOptions" [value]="option">
+        </sui-select-option>
+      </sui-multi-select>
+      <button class="ui button blue" type="submit" [disabled]="!editBook.form.valid || !editing">Guardar</button>
+    </form>
   </div>
 </div>
