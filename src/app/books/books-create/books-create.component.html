@@ -27,6 +27,10 @@
         <label>Editorial</label>
         <input name="editorial" #editorial="ngModel" [(ngModel)]="book.editorial" required placeholder="editorial" type="text">
       </div>
+      <div class="field required" [class.error]="!portada.valid && portada.touched">
+        <label>Portada (url de la imagen)</label>
+        <input name="portada" #portada="ngModel" [(ngModel)]="book.portada" required placeholder="portada" type="text">
+      </div>
       <div class="field required" [class.error]="!numpags.valid && numpags.touched">
         <label>Número de páginas</label>
         <input name="n_pags" #numpags="ngModel" [(ngModel)]="book.n_pags" required placeholder="n_pags" type="number">

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { Book } from '../shared/models/book.model';
 import { ApiService } from '../shared/services/api/api.service';
 import { ResourceService } from '../shared/services/api/resource.service';
+import * as moment from 'moment';
 @Injectable()
 export class BooksService extends ResourceService<Book> {
   public url: string;
@@ -12,37 +13,18 @@ export class BooksService extends ResourceService<Book> {
     super('libros', _apiService);
   }
 
-  // create(token, book: Book): Observable<any> {
-  //   const params = `json=${JSON.stringify(book)}`;
-  //   return this._apiService.Post('libros', params, token);
-  // }
-
-  // edit(token, book: Book): Observable<any> {
-  //   const params = `json=${JSON.stringify(book)}`;
-  //   return this._apiService.Put(`libros/${book.id}`, params, token);
-  // }
-
-  // list(token): Observable<any> {
-  //   // const headers = new HttpHeaders().set('Authorization', token);
-  //   // return this.http.get(this.url + '/libros', { headers });
-  //   return this._apiService.Get('libros', token);
-  // }
-
-  // detail(token, id): Observable<any> {
-  //   // const headers = new HttpHeaders().set('Authorization', token);
-  //   // return this.http.get(this.url + '/libros', { headers });
-  //   return this._apiService.Get(`libros/${id}`, token);
-  // }
-
-  // delete(token, id): Observable<any> {
-  //   return this._apiService.Delete(`libros/${id}`, token);
-  // }
-
   getAutoresFromLibro(token, id): Observable<any> {
     return this._apiService.Get(`libros/${id}/autores`, token);
   }
 
   getAutores(token): Observable<any> {
     return this._apiService.Get(`autores`, token);
+  }
+
+  updateAutorLibro(token, idAutor, idLibro): Observable<any> {
+    const item = { fecha: moment().format('Y-M-d')};
+    console.log(item);
+    const params = `json=${JSON.stringify(item)}`;
+    return this._apiService.Put(`libros/${idLibro}/autores/${idAutor}`, params, token);
   }
 }

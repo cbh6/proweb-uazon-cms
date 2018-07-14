@@ -24,6 +24,7 @@ export class BooksDetailComponent implements OnInit {
   public editing: boolean;
   public loading: boolean;
   public categorias: ICategoria[];
+  public autorSeleccionado: number;
 
 
   constructor(
@@ -50,6 +51,8 @@ export class BooksDetailComponent implements OnInit {
     this.book = new Book({});
     this.editing = false;
     this.loading = true;
+    this.autores = [];
+    this.autorSeleccionado = null;
 
     this.getBookData();
     this.getAuthors();
@@ -68,12 +71,9 @@ export class BooksDetailComponent implements OnInit {
   }
 
   getAuthors() {
-    // Get book id from url and then fetch book data using apiService
     this._booksService.getAutores(this._authService.getToken()).subscribe(response => {
-      this.autores = response.data;
       response.data.forEach(autor => {
-        // this.options.push({ name: autor.nombre });
-        // console.log(this.options);
+        this.autores.push(new Author(autor));
       });
     });
   }
@@ -93,10 +93,25 @@ export class BooksDetailComponent implements OnInit {
         console.log(error as any);
       }
     );
+
+    this._booksService.updateAutorLibro(this._authService.getToken(), this.autorSeleccionado, this.book.id).subscribe(
+      response => {
+        // console.log(response);
+      },
+      error => {
+        console.log(error as any);
+      }
+    );
   }
 
   categoriaChange($event) {
     const newCategoria = this.categorias.find(categoria => (categoria.text === $event.target.value));
     this.book.categoria = newCategoria.value;
+  }
+
+  autorChange($event) {
+    console.log($event.target.value);
+    this.autorSeleccionado = this.autores.find(autor => autor.nombre === $event.target.value).id;
+
   }
 }
