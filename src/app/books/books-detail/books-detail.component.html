@@ -35,11 +35,12 @@
         <label>Número de páginas</label>
         <input name="n_pags" #numpags="ngModel" [(ngModel)]="book.n_pags" [disabled]="!editing" required placeholder="n_pags" type="number">
       </div>
-      <sui-multi-select class="selection" [options]="options" labelField="name"
-         #multiSelect>
-        <sui-select-option *ngFor="let option of multiSelect.filteredOptions" [value]="option">
-        </sui-select-option>
-      </sui-multi-select>
+      <div class="field required">
+        <label>Categoria</label>
+        <select name="categoria" [disabled]="!editing" (change)="categoriaChange($event)" >
+          <option *ngFor="let categoria of categorias" [selected]="categoria.value === book.categoria" [ngValue]="categoria.value">{{categoria.text}}</option>
+        </select>      
+      </div>
       <button class="ui button blue" type="submit" [disabled]="!editBook.form.valid || !editing">Guardar</button>
     </form>
   </div>

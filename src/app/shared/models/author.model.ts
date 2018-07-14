@@ -2,6 +2,7 @@ import { Resource } from './resource';
 
 export class Author extends Resource {
   nombre: string;
+  foto: string;
 
   constructor(obj: object) {
     super();
@@ -9,6 +10,7 @@ export class Author extends Resource {
   }
 
   init() {
-    this.nombre = null;
+    this.nombre = '';
+    this.foto = '';
   }
 }

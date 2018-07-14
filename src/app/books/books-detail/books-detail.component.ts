@@ -8,6 +8,11 @@ import { AuthService } from '../../shared/services/api/auth.service';
 import { Book } from '../../shared/models/book.model';
 import { Author } from '../../shared/models/author.model';
 
+export interface ICategoria {
+  id: number;
+  value: string;
+  text: string;
+}
 @Component({
   selector: 'uaz-books-detail',
   templateUrl: './books-detail.component.html',
@@ -18,11 +23,8 @@ export class BooksDetailComponent implements OnInit {
   public autores: Author[];
   public editing: boolean;
   public loading: boolean;
-  options = [];
-  dropdownList = [];
-  selectedItems = [];
-  dropdownSettings = {};
-  optionsY = [];
+  public categorias: ICategoria[];
+
 
   constructor(
     private _toastr: ToastrService,
@@ -30,21 +32,27 @@ export class BooksDetailComponent implements OnInit {
     private _router: Router,
     private _authService: AuthService,
     private _booksService: BooksService
-  ) {}
+  ) {
+    this.categorias = [
+      { id: 0, value: 'novelas', text: 'Novela' },
+      { id: 1, value: 'ciencia', text: 'Ciencia' },
+      { id: 2, value: 'historia', text: 'Historia' },
+      { id: 3, value: 'cuentos', text: 'Cuentos' },
+      { id: 4, value: 'comics', text: 'Cómics' },
+      { id: 5, value: 'poesia', text: 'Poesía' },
+      { id: 6, value: 'ficcion', text: 'Ficción' },
+      { id: 7, value: 'misterio', text: 'Misterio' },
+      { id: 8, value: 'biografia', text: 'Biografía' }
+    ];
+  }
 
   ngOnInit() {
     this.book = new Book({});
     this.editing = false;
     this.loading = true;
-    this.options = [];
 
     this.getBookData();
     this.getAuthors();
-
-    console.log('options', this.options);
-
-    this.optionsY = [{ name: 'Test' }];
-    this.selectedItems = [{ item_id: 3, item_text: 'Pune' }, { item_id: 4, item_text: 'Navsari' }];
   }
 
   getBookData() {
@@ -64,8 +72,8 @@ export class BooksDetailComponent implements OnInit {
     this._booksService.getAutores(this._authService.getToken()).subscribe(response => {
       this.autores = response.data;
       response.data.forEach(autor => {
-        this.options.push({ name: autor.nombre });
-        console.log(this.options);
+        // this.options.push({ name: autor.nombre });
+        // console.log(this.options);
       });
     });
   }
@@ -85,5 +93,10 @@ export class BooksDetailComponent implements OnInit {
         console.log(error as any);
       }
     );
+  }
+
+  categoriaChange($event) {
+    const newCategoria = this.categorias.find(categoria => (categoria.text === $event.target.value));
+    this.book.categoria = newCategoria.value;
   }
 }

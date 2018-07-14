@@ -12,8 +12,9 @@ export class Book extends Resource {
   editorial: string;
   atributos_extra: object;
   cantidad: number;
+  portada: string;
+  categoria: string;
   autores: Author[];
-  fotos: Photo[];
 
   constructor(obj: object) {
     super();
@@ -30,6 +31,7 @@ export class Book extends Resource {
     this.editorial = '';
     this.atributos_extra = {};
     this.autores = [];
-    this.fotos = [];
+    this.portada = '';
+    this.categoria = '';
   }
 }

@@ -24,8 +24,8 @@
       <div class="field required">
         <label>Rol</label>
         <select name="role" [disabled]="!editing" (change)="selectChange($event)" >
-            <option *ngFor="let role of roles" [selected]="role.value === user.role" [ngValue]="role.id">{{role.text}}</option>
-          </select>
+          <option *ngFor="let role of roles" [selected]="role.value === user.role" [ngValue]="role.id">{{role.text}}</option>
+        </select>
       </div>
       <div class="field required" [class.error]="!address.valid && address.touched">
         <label>Dirección</label>
