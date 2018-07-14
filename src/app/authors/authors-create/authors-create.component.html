@@ -12,6 +12,10 @@
         <label>Nombre</label>
         <input name="nombre" #nombre="ngModel" [(ngModel)]="author.nombre" required placeholder="Nombre" type="text">
       </div>
+      <div class="field required" [class.error]="!foto.valid && foto.touched">
+        <label>Foto (url a la imagen)</label>
+        <input name="foto" #foto="ngModel" [(ngModel)]="author.foto" required placeholder="Foto" type="text">
+      </div>
       <button class="ui button blue" type="submit" [disabled]="!newAuthor.form.valid">Guardar</button>
     </form>
   </div>
