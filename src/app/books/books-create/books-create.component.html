@@ -35,6 +35,20 @@
         <label>Número de páginas</label>
         <input name="n_pags" #numpags="ngModel" [(ngModel)]="book.n_pags" required placeholder="n_pags" type="number">
       </div>
+      <!-- categoria -->
+      <div class="field required">
+        <label>Categoria</label>
+        <select name="categoria" (change)="categoriaChange($event)">
+          <option *ngFor="let categoria of categorias" [selected]="categoria.value === book.categoria" [ngValue]="categoria.value">{{categoria.text}}</option>
+        </select>
+      </div>
+      <!-- autores -->
+      <div class="field required">
+        <label>Autores</label>
+        <select name="autores" (change)="autorChange($event)">
+          <option *ngFor="let autor of autores" [ngValue]="autor.id">{{autor.nombre}}</option>
+        </select>
+      </div>
       <!-- atributos extra: listado para añadir o quitar elementos. Como un to-do list -->
       <button class="ui button blue" type="submit" [disabled]="!newBook.form.valid">Guardar</button>
     </form>

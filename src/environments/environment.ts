@@ -5,6 +5,6 @@
 
 export const environment = {
   production: false,
-  // apiPath: 'http://proweb.local/api'
+  // apiPath: 'http://proweb-uazon/api'
   apiPath: 'http://localhost:8000/api'
 };

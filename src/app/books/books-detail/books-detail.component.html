@@ -51,7 +51,7 @@
       <div class="field required">
         <label>Autores</label>
         <select name="autores" [disabled]="!editing" (change)="autorChange($event)" >
-          <option *ngFor="let autor of autores" [selected]="book.autores && autor.id === book.autores[0].id" [ngValue]="autor.id">{{autor.nombre}}</option>
+          <option *ngFor="let autor of autores" [selected]="book.autores && book.autores[0] && autor.id === book.autores[0].id" [ngValue]="autor.id">{{autor.nombre}}</option>
         </select>      
       </div>
       <button class="ui button blue" type="submit" [disabled]="!editBook.form.valid || !editing">Guardar</button>
