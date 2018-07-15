@@ -1,5 +1,4 @@
 export const environment = {
   production: true,
-  apiPath: 'http://proweb-uazon/api'
-
+  apiPath: 'proweb-uazon.com/api'
 };
